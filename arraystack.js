@@ -31,15 +31,13 @@ class ArrayStack {
 	}
 
 	add(index, value) {
-		if (index < 0 || index > this.length) {
-			throw new Error('IndexError')
-		}
+		if (index < 0 || index > this.length) {throw new Error('IndexError')}
 		// if (this.length === this.array.length) {this._resize()}
 		for (let i = this.length; i > index; i--) {
 			this.array[i] = this.array[i-1]
 		}
 		this.array[index] = value
-		this.length ++
+		this.length++
 	}
 
 	remove(index) {
@@ -48,7 +46,7 @@ class ArrayStack {
 		for (let i = index; i < this.length; i++) {
 			this.array[i] = this.array[i+1]
 		}
-		this.length --
+		this.length--
 		this.array.length = this.length
 		// if (this.array.length >= 3 * this.length) {this._resize()}
 		return element
