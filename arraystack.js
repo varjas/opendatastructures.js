@@ -43,3 +43,5 @@ class ArrayStack {
 		return element
 	}
 }
+
+module.exports = ArrayStack
