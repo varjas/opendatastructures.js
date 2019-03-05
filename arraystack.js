@@ -1,6 +1,7 @@
+/** Implementation of ArrayStack data structure */
 class ArrayStack {
 	constructor() {
-		this.array = new Array(1)
+		this.array = []
 		this.length = 0
 	}
 
@@ -10,13 +11,13 @@ class ArrayStack {
 		}
 	}
 
-	_resize(message) {
-		let newArray = new Array(2 * this.length)
-		for (let i = this.length; i >= 0; i--) {
-			newArray[i] = this.array[i]
-		}
-		this.array = newArray
-	}
+	// _resize(message) {
+	// 	let newArray = new Array(2 * this.length)
+	// 	for (let i = this.length; i >= 0; i--) {
+	// 		newArray[i] = this.array[i]
+	// 	}
+	// 	this.array = newArray
+	// }
 
 	get(index) {
 		this._indexWithinRange(index)
