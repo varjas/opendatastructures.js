@@ -1,7 +1,7 @@
 {
   "name": "opendatastructures.js",
   "version": "1.0.0",
-  "description": "JavaScript implementation of data structures from Open Data Structures",
+  "description": "Implementation of data structures from Open Data Structures",
   "main": "ods.js",
   "directories": {
     "test": "test"
