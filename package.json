@@ -1,0 +1,27 @@
+{
+  "name": "opendatastructures.js",
+  "version": "1.0.0",
+  "description": "JavaScript implementation of data structures from Open Data Structures",
+  "main": "ods.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varjas/opendatastructures.js.git"
+  },
+  "author": "Christopher J. Varjas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/varjas/opendatastructures.js/issues"
+  },
+  "homepage": "https://github.com/varjas/opendatastructures.js#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.1.0",
+    "jest-cli": "^24.1.0"
+  }
+}
