@@ -1,0 +1,46 @@
+const ods = require('../ods.js')
+
+
+// Test ArrayQueue data structure
+test('ArrayQueue add', () => {
+	let a = new ods.ArrayQueue()
+	a.add(5)
+	a.add(4)
+	expect(a.add(3)).toBe(true)
+	expect(a.array).toEqual([5,4,3, undefined])
+	expect(a.length).toBe(3)
+})
+
+test('ArrayQueue remove', () => {
+	let a = new ods.ArrayQueue()
+	a.add(5)
+	a.add(4)
+	a.add(3)
+	expect(a.remove()).toEqual(5)
+	expect(a.length).toBe(2)
+	expect(a.remove()).toEqual(4)
+	expect(a.remove()).toEqual(3)
+})
+
+test('ArrayQueue combined', () => {
+	let a = new ods.ArrayQueue()
+	a.add('a')
+	a.add('b')
+	a.add('c')
+	a.add('d')
+	a.add('e')
+	a.remove()
+	a.add('f')
+	a.add('g')
+	a.add('h')
+	a.remove()
+	expect(a.length).toBe(6)
+	expect(a.remove()).toBe('c')
+	expect(a.remove()).toBe('d')
+	expect(a.remove()).toBe('e')
+	expect(a.remove()).toBe('f')
+	expect(a.remove()).toBe('g')
+	expect(a.remove()).toBe('h')
+	expect(a.length).toBe(0)
+	expect(a.array).toEqual([undefined])
+})
