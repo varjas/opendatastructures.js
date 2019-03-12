@@ -21,3 +21,13 @@ test('ArrayDeque remove', () => {
 	expect(a.remove(1)).toEqual(2)
 	expect(a.remove(0)).toEqual(0)
 })
+
+test('ArrayDeque get', () => {
+	let a = new ods.ArrayDeque()
+	a.add(0,0)
+	a.add(1,1)
+	a.add(2,2)
+	expect(a.get(1)).toEqual(1)
+	expect(a.get(2)).toEqual(2)
+	expect(a.get(0)).toEqual(0)
+})
