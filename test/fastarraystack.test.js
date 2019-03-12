@@ -1,5 +1,6 @@
 const ods = require('../ods.js')
 
+
 // Test FastArrayStack data structure
 test('FastArrayStack add', () => {
 	let a = new ods.FastArrayStack()

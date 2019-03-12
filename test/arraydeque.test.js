@@ -31,3 +31,14 @@ test('ArrayDeque get', () => {
 	expect(a.get(2)).toEqual(2)
 	expect(a.get(0)).toEqual(0)
 })
+
+test('ArrayDeque set', () => {
+	let a = new ods.ArrayDeque()
+	a.add(0,0)
+	a.add(1,1)
+	a.add(2,2)
+	expect(a.set(1, 3)).toEqual(1)
+	expect(a.get(1)).toEqual(3)
+	expect(a.set(0, 5)).toEqual(0)
+	expect(a.get(0)).toEqual(5)
+})
