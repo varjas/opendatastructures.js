@@ -21,4 +21,7 @@ test('DualArrayDeque add', () => {
 	a.add(14,14)
 	a.add(15,15)
 	a.add(16,16)
+	expect(a.size()).toBe(17)
+	expect(a.front.array).toEqual([7,6,5,4,3,2,1,0])
+	expect(a.back.array).toEqual([8,9,10,11,12,13,14,15,16])
 })
