@@ -8,7 +8,20 @@ class DualArrayDeque {
 	}
 
 	_balance() {
-
+		const length = this.size()
+		const center = length / 2
+		if (3 * front.length < back.length || 3 * back.length < front.length) {
+			let newFront = new ArrayStack()
+			for (let i = 0; i < center; i++) {
+				newFront.add(i, this.get(center - i - 1))
+			}
+			let newBack = new ArrayStack()
+			for (let i = 0; i < length - center; i++) {
+				newBack.add(i, this.get(center + 1))
+			}
+			this.front = newFront
+			this.back = newBack
+		}
 	}
 
 	size() {
