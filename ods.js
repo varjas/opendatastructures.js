@@ -3,6 +3,7 @@ const structureNames = [
 	'FastArrayStack',
 	'ArrayQueue',
 	'ArrayDeque',
+	'DualArrayDeque'
 ]
 
 let structures = {}
