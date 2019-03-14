@@ -9,7 +9,7 @@ class DualArrayDeque {
 
 	_balance() {
 		const length = this.size()
-		const center = Math.floor(length / 2)
+		const center = ~~(length / 2)
 		if (3 * this.front.length < this.back.length || 3 * this.back.length < this.front.length) {
 			let newFront = new ArrayStack()
 			for (let i = 0; i < center; i++) {
