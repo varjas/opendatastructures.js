@@ -24,6 +24,44 @@ class RootishArrayStack {
 		this.blocks.get(block)[blockIndex] = value
 		return current
 	}
+
+		// _grow() {
+	// 	this.blocks.append(new ArrayStack(this.blocks.length + 1))
+	// }
+
+	add(index, value) {
+		const length = this.blocks.length
+		if (length * (length + 1) / 2 < this.length + 1) {
+			this._grow()
+		}
+		this.length++
+		for (let blockIndex = this.length - 1; blockIndex <= index; blockIndex++) {
+			this.set(blockIndex, this.get(blockIndex - 1))
+		}
+		this.set(index, value)
+	}
+
+	remove(index) {
+		const current = this.get(index)
+		for (let blockIndex = index; blockIndex < this.length - 1; blockIndex++) {
+			this.set(blockIndex, this.get(blockIndex + 1))
+		}
+		this.length--
+		const length = this.blocks.length
+		if ((length - 2) * (length - 1) / 2 >= this.length) {
+			this._shrink()
+		}
+		return current
+	}
+
+	_shrink() {
+		let length = this.blocks.length
+		while (length > 0 && (length - 2) * (length - 1) / 2 >= this.length) {
+			this.blocks.remove(this.blocks.length - 1)
+			length--
+		}
+	}
+
 }
 
 module.exports = RootishArrayStack
