@@ -42,6 +42,10 @@ class ArrayStack {
 		this.array.length = this.length
 		return element
 	}
+
+	append(value) {
+		this.add(this.length, value)
+	}
 }
 
 module.exports = ArrayStack

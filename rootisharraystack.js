@@ -8,7 +8,7 @@ class RootishArrayStack {
 	}
 
 	_getBlock(index) {
-		return ~~Math.ceil(-3 + Math.sqrt(9 + 8 * index) / 2)
+		return ~~Math.ceil((-3 + Math.sqrt(9 + 8 * index)) / 2)
 	}
 
 	get(index) {
@@ -25,9 +25,9 @@ class RootishArrayStack {
 		return current
 	}
 
-		// _grow() {
-	// 	this.blocks.append(new ArrayStack(this.blocks.length + 1))
-	// }
+	_grow() {
+		this.blocks.append(new ArrayStack(this.blocks.length + 1))
+	}
 
 	add(index, value) {
 		const length = this.blocks.length
@@ -35,7 +35,8 @@ class RootishArrayStack {
 			this._grow()
 		}
 		this.length++
-		for (let blockIndex = this.length - 1; blockIndex <= index; blockIndex++) {
+		// for (let blockIndex = this.length - 1; blockIndex <= index; blockIndex++) {
+		for (let blockIndex = this.length; blockIndex <= index; blockIndex++) {
 			this.set(blockIndex, this.get(blockIndex - 1))
 		}
 		this.set(index, value)
@@ -61,7 +62,6 @@ class RootishArrayStack {
 			length--
 		}
 	}
-
 }
 
 module.exports = RootishArrayStack
