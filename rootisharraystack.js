@@ -12,16 +12,16 @@ class RootishArrayStack {
 	}
 
 	get(index) {
-		const block = this._getBlock(index)
-		const blockIndex = index - block * (block + 1) / 2
-		return this.blocks.get(block)[blockIndex]
+		const blockIndex = this._getBlock(index)
+		const arrayIndex = index - blockIndex * (blockIndex + 1) / 2
+		return this.blocks.get(blockIndex).array[arrayIndex]
 	}
 
 	set(index, value) {
-		const block = this._getBlock(index)
-		const blockIndex = index - block * (block + 1) / 2
-		const current = this.blocks.get(block)[blockIndex]
-		this.blocks.get(block)[blockIndex] = value
+		const blockIndex = this._getBlock(index)
+		const arrayIndex = index - blockIndex * (blockIndex + 1) / 2
+		const current = this.blocks.get(blockIndex).array[arrayIndex]
+		this.blocks.get(blockIndex).array[arrayIndex] = value
 		return current
 	}
 
@@ -35,17 +35,17 @@ class RootishArrayStack {
 			this._grow()
 		}
 		this.length++
-		// for (let blockIndex = this.length - 1; blockIndex <= index; blockIndex++) {
-		for (let blockIndex = this.length; blockIndex <= index; blockIndex++) {
-			this.set(blockIndex, this.get(blockIndex - 1))
+		// for (let arrayIndex = this.length - 1; arrayIndex <= index; arrayIndex++) {
+		for (let arrayIndex = this.length; arrayIndex <= index; arrayIndex++) {
+			this.set(arrayIndex, this.get(arrayIndex - 1))
 		}
 		this.set(index, value)
 	}
 
 	remove(index) {
 		const current = this.get(index)
-		for (let blockIndex = index; blockIndex < this.length - 1; blockIndex++) {
-			this.set(blockIndex, this.get(blockIndex + 1))
+		for (let arrayIndex = index; arrayIndex < this.length - 1; arrayIndex++) {
+			this.set(arrayIndex, this.get(arrayIndex + 1))
 		}
 		this.length--
 		const length = this.blocks.length
