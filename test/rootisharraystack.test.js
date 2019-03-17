@@ -16,3 +16,13 @@ test('RootishArrayStack add', () => {
 	expect(a.blocks.array[4].array).toEqual([10,11,12,13,14])
 	expect(a.blocks.array[5].array).toEqual([15,16])
 })
+
+test('RootishArrayStack get', () => {
+	let a = new ods.RootishArrayStack()
+	for (let i = 0; i < 17; i++) {
+		a.add(i, i)
+	}
+	expect(a.get(1)).toEqual(1)
+	expect(a.get(10)).toEqual(10)
+	expect(a.get(0)).toEqual(0)
+})
