@@ -6,6 +6,12 @@ class ArrayDeque {
 		this.length = 0
 	}
 
+	_indexWithinRange(index) {
+		if (index < 0 || index >= this.length) {
+			throw new Error('IndexError')
+		}
+	}
+
 	_max(a, b) {
 		return (a > b) ? a : b
 	}
@@ -20,12 +26,12 @@ class ArrayDeque {
 	}
 
 	get(index) {
-		if (index < 0 || index >= this.length) {throw new Error('IndexError')}
+		this._indexWithinRange(index)
 		return this.array[(index + this.nextElement) % this.array.length]
 	}
 
 	set(index, value) {
-		if (index < 0 || index >= this.length) {throw new Error('IndexError')}
+		this._indexWithinRange(index)
 		const current = this.get(index)
 		this.array[(index + this.nextElement) % this.array.length] = value
 		return current
@@ -49,7 +55,7 @@ class ArrayDeque {
 	}
 
 	remove(index) {
-		if (index < 0 || index >= this.length) {throw new Error('IndexError')}
+		this._indexWithinRange(index)
 		const current = this.array[(this.nextElement + index) % this.array.length]
 		if (index < this.length / 2) {
 			for (let k = index; k > 0; k--) {
