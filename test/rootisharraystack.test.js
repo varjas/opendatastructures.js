@@ -26,3 +26,16 @@ test('RootishArrayStack get', () => {
 	expect(a.get(10)).toEqual(10)
 	expect(a.get(0)).toEqual(0)
 })
+
+test('RootishArrayStack set', () => {
+	let a = new ods.RootishArrayStack()
+	for (let i = 0; i < 17; i++) {
+		a.add(i, i)
+	}
+	expect(a.set(1, 3)).toEqual(1)
+	expect(a.get(1)).toEqual(3)
+	expect(a.set(0, 5)).toEqual(0)
+	expect(a.get(0)).toEqual(5)
+	expect(a.set(15, 2)).toEqual(15)
+	expect(a.get(15)).toEqual(2)
+})
