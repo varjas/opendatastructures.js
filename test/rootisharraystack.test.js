@@ -17,6 +17,25 @@ test('RootishArrayStack add', () => {
 	expect(a.blocks.array[5].array).toEqual([15,16])
 })
 
+test('RootishArrayStack remove', () => {
+	let a = new ods.RootishArrayStack()
+	for (let i = 0; i < 17; i++) {
+		a.add(i, i)
+	}
+	expect(a.remove(1)).toEqual(1)
+	expect(a.remove(8)).toEqual(9)
+	expect(a.length).toBe(15)
+	// console.log(a.blocks)
+	// for (let i = 0; i < 10; i++) {
+	// 	a.remove(0)
+	// }
+	// expect(a.length).toEqual(5)
+	// console.log(a.blocks)
+	// expect(a.blocks[0]).toEqual([12])
+	// expect(a.blocks[1]).toEqual([13,14])
+	// expect(a.blocks[3]).toEqual([15,16])
+})
+
 test('RootishArrayStack get', () => {
 	let a = new ods.RootishArrayStack()
 	for (let i = 0; i < 17; i++) {

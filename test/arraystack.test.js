@@ -4,11 +4,13 @@ const ods = require('../ods.js')
 // Test ArrayStack data structure
 test('ArrayStack add', () => {
 	let a = new ods.ArrayStack()
-	a.add(0, 5)
-	expect(a.array).toEqual([5])
-	expect(a.length).toBe(1)
-	// expect(a.add(5, 5)).toBe()
-	// expect(a.add(-1, 5)).toBe()
+	a.add(0, 0)
+	a.add(1, 1)
+	a.add(2, 2)
+	a.add(3, 3)
+	a.add(4, 4)
+	expect(a.array).toEqual([0,1,2,3,4, undefined, undefined, undefined])
+	expect(a.length).toBe(5)
 })
 
 test('ArrayStack set', () => {

@@ -1,7 +1,7 @@
 /** Implementation of ArrayStack data structure */
 class ArrayStack {
 	constructor() {
-		this.array = []
+		this.array = new Array(1)
 		this.length = 0
 	}
 
@@ -9,6 +9,18 @@ class ArrayStack {
 		if (index < 0 || index >= this.length) {
 			throw new Error('IndexError')
 		}
+	}
+
+	_max(a, b) {
+		return (a > b) ? a : b
+	}
+
+	_resize() {
+		let newArray = new Array(this._max(1, 2 * this.length))
+		for (let i = 0; i < this.length; i++) {
+			newArray[i] = this.array[i]
+		}
+		this.array = newArray
 	}
 
 	get(index) {
@@ -25,6 +37,7 @@ class ArrayStack {
 
 	add(index, value) {
 		if (index < 0 || index > this.length) {throw new Error('IndexError')}
+		if (this.array.length === this.length) {this._resize()}
 		for (let i = this.length; i > index; i--) {
 			this.array[i] = this.array[i-1]
 		}
@@ -40,6 +53,7 @@ class ArrayStack {
 		}
 		this.length--
 		this.array.length = this.length
+		if (this.array.length >= 3 * this.length) {this._resize()}
 		return element
 	}
 
