@@ -12,7 +12,7 @@ class BaseCollection {
 	}
 
 	// Generic return length function that works with most data structures
-	_size() {
+	size() {
 		return this.length
 	}
 }

@@ -10,8 +10,8 @@ class ArrayDeque extends BaseCollection{
 	}
 
 	_resize() {
-		let newArray = new Array(this._max(1, 2 * this.length))
-		for (let i = 0; i < this.length; i++) {
+		let newArray = new Array(this._max(1, 2 * this.size()))
+		for (let i = 0; i < this.size(); i++) {
 			newArray[i] = this.array[(this.nextElement + i) % this.array.length]
 		}
 		this.array = newArray
@@ -31,15 +31,15 @@ class ArrayDeque extends BaseCollection{
 	}
 
 	add(index, value) {
-		if (index < 0 || index > this.length) {throw new Error('IndexError')}
-		if (this.length === this.array.length) {this._resize()}
-		if (index < this.length / 2) {
+		if (index < 0 || index > this.size()) {throw new Error('IndexError')}
+		if (this.size() === this.array.length) {this._resize()}
+		if (index < this.size() / 2) {
 			this.nextElement = (this.nextElement - 1) % this.array.length
 			for (let k = 0; k < index; k++) {
 				this.array[(this.nextElement + k) % this.array.length] = this.array[(this.nextElement + k + 1) % this.array.length]
 			}
 		}else{
-			for (let k = this.length; k > index; k--) {
+			for (let k = this.size(); k > index; k--) {
 				this.array[(this.nextElement + k) % this.array.length] = this.array[(this.nextElement + k - 1) % this.array.length]
 			}
 		}
@@ -50,7 +50,7 @@ class ArrayDeque extends BaseCollection{
 	remove(index) {
 		this._indexWithinRange(index)
 		const current = this.array[(this.nextElement + index) % this.array.length]
-		if (index < this.length / 2) {
+		if (index < this.size() / 2) {
 			for (let k = index; k > 0; k--) {
 				this.array[(this.nextElement + k) % this.array.length] = this.array[(this.nextElement + k - 1) % this.array.length]
 			}
@@ -61,7 +61,7 @@ class ArrayDeque extends BaseCollection{
 			}
 		}
 		this.length--
-		if (this.array.length >= 3 * this.length) {this._resize()}
+		if (this.array.length >= 3 * this.size()) {this._resize()}
 		return current
 	}
 }

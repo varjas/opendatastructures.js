@@ -9,8 +9,8 @@ class ArrayStack extends BaseCollection {
 	}
 
 	_resize() {
-		let newArray = new Array(this._max(1, 2 * this.length))
-		for (let i = 0; i < this.length; i++) {
+		let newArray = new Array(this._max(1, 2 * this.size()))
+		for (let i = 0; i < this.size(); i++) {
 			newArray[i] = this.array[i]
 		}
 		this.array = newArray
@@ -29,9 +29,9 @@ class ArrayStack extends BaseCollection {
 	}
 
 	add(index, value) {
-		if (index < 0 || index > this.length) {throw new Error('IndexError')}
-		if (this.array.length === this.length) {this._resize()}
-		for (let i = this.length; i > index; i--) {
+		if (index < 0 || index > this.size()) {throw new Error('IndexError')}
+		if (this.array.length === this.size()) {this._resize()}
+		for (let i = this.size(); i > index; i--) {
 			this.array[i] = this.array[i-1]
 		}
 		this.array[index] = value
@@ -41,17 +41,17 @@ class ArrayStack extends BaseCollection {
 	remove(index) {
 		this._indexWithinRange(index)
 		const element = this.array[index]
-		for (let i = index; i < this.length; i++) {
+		for (let i = index; i < this.size(); i++) {
 			this.array[i] = this.array[i+1]
 		}
 		this.length--
-		this.array.length = this.length
-		if (this.array.length >= 3 * this.length) {this._resize()}
+		this.array.length = this.size()
+		if (this.array.length >= 3 * this.size()) {this._resize()}
 		return element
 	}
 
 	append(value) {
-		this.add(this.length, value)
+		this.add(this.size(), value)
 	}
 }
 
