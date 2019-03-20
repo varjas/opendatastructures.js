@@ -1,13 +1,12 @@
+const BaseCollection = require('./base.js')
+
 /** Implementation of ArrayQueue data structure */
-class ArrayQueue {
+class ArrayQueue extends BaseCollection {
 	constructor() {
+		super()
 		this.array = new Array(1)
 		this.nextElement = 0
 		this.length = 0
-	}
-
-	_max(a, b) {
-		return (a > b) ? a : b
 	}
 
 	_resize() {

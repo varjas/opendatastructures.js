@@ -1,19 +1,12 @@
+const BaseCollection = require('./base.js')
+
 /** Implementation of ArrayDeque data structure */
-class ArrayDeque {
+class ArrayDeque extends BaseCollection{
 	constructor() {
+		super()
 		this.array = new Array(1)
 		this.nextElement = 0
 		this.length = 0
-	}
-
-	_indexWithinRange(index) {
-		if (index < 0 || index >= this.length) {
-			throw new Error('IndexError')
-		}
-	}
-
-	_max(a, b) {
-		return (a > b) ? a : b
 	}
 
 	_resize() {

@@ -1,18 +1,11 @@
+const BaseCollection = require('./base.js')
+
 /** Implementation of ArrayStack data structure */
-class ArrayStack {
+class ArrayStack extends BaseCollection {
 	constructor() {
+		super()
 		this.array = new Array(1)
 		this.length = 0
-	}
-
-	_indexWithinRange(index) {
-		if (index < 0 || index >= this.length) {
-			throw new Error('IndexError')
-		}
-	}
-
-	_max(a, b) {
-		return (a > b) ? a : b
 	}
 
 	_resize() {

@@ -16,3 +16,5 @@ class BaseCollection {
 		return this.length
 	}
 }
+
+module.exports = BaseCollection
