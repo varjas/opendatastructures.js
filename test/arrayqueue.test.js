@@ -13,6 +13,7 @@ test('ArrayQueue add', () => {
 
 test('ArrayQueue remove', () => {
 	let a = new ods.ArrayQueue()
+	expect(() => a.remove()).toThrow()
 	a.add(5)
 	a.add(4)
 	a.add(3)

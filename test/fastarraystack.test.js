@@ -4,6 +4,8 @@ const ods = require('../ods.js')
 // Test FastArrayStack data structure
 test('FastArrayStack add', () => {
 	let a = new ods.FastArrayStack()
+	expect(() => a.add(1,0)).toThrowError('IndexError')
+	expect(() => a.add(-1,0)).toThrowError('IndexError')
 	a.add(0, 5)
 	expect(a.array).toEqual([5])
 	expect(a.length).toBe(1)

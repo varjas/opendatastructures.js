@@ -1,14 +1,11 @@
+const BaseCollection = require('./base.js')
+
 /** Implementation of FastArrayStack data structure */
-class FastArrayStack {
+class FastArrayStack extends BaseCollection {
 	constructor() {
+		super()
 		this.array = []
 		this.length = 0
-	}
-
-	_indexWithinRange(index) {
-		if (index < 0 || index >= this.length) {
-			throw new Error('IndexError')
-		}
 	}
 
 	get(index) {
