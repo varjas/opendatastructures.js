@@ -10,6 +10,13 @@ test('DualArrayDeque add', () => {
 	expect(a.size()).toBe(17)
 	expect(a.front.array).toEqual([7,6,5,4,3,2,1,0])
 	expect(a.back.array).toEqual([8,9,10,11,12,13,14,15,16,undefined,undefined,undefined,undefined,undefined,undefined,undefined])
+	a = new ods.DualArrayDeque()
+	for (let i = 0; i < 17; i++) {
+		a.add(0, i)
+	}
+	expect(a.size()).toBe(17)
+	expect(a.front.array).toEqual([7,8,9,10,11,12,13,14,15,16,undefined,undefined,undefined,undefined,undefined,undefined])
+	expect(a.back.array).toEqual([6,5,4,3,2,1,0,undefined])
 })
 
 test('DualArrayDeque remove', () => {
