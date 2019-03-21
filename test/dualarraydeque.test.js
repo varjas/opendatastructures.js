@@ -9,7 +9,7 @@ test('DualArrayDeque add', () => {
 	}
 	expect(a.size()).toBe(17)
 	expect(a.front.array).toEqual([7,6,5,4,3,2,1,0])
-	expect(a.back.array).toEqual([8,9,10,11,12,13,14,15,16])
+	expect(a.back.array).toEqual([8,9,10,11,12,13,14,15,16,undefined,undefined,undefined,undefined,undefined,undefined,undefined])
 })
 
 test('DualArrayDeque remove', () => {
@@ -26,7 +26,7 @@ test('DualArrayDeque remove', () => {
 		a.remove(0)
 	}
 	expect(a.front.array).toEqual([13,12])
-	expect(a.back.array).toEqual([14,15,16])
+	expect(a.back.array).toEqual([14,15,16,undefined])
 })
 
 test('DualArrayDeque get', () => {
