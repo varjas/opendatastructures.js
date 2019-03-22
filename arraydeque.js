@@ -34,7 +34,7 @@ class ArrayDeque extends BaseCollection{
 		if (index < 0 || index > this.size()) {throw new Error('IndexError')}
 		if (this.size() === this.array.length) {this._resize()}
 		if (index < this.size() / 2) {
-			this.nextElement = (this.nextElement - 1) % this.array.length
+			this.nextElement = (this.nextElement === 0) ? this.array.length - 1 : (this.nextElement - 1) % this.array.length
 			for (let k = 0; k < index; k++) {
 				this.array[(this.nextElement + k) % this.array.length] = this.array[(this.nextElement + k + 1) % this.array.length]
 			}
