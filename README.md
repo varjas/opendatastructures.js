@@ -1,8 +1,8 @@
 # About
-Implementation of data structures from Open Data Structures as a NodeJS module.
+Implementation of data structures from [Open Data Structures](http://opendatastructures.org/) as a NodeJS module.
 
 ## Usage
-```
+```javascript
 const ods = require('./ods.js')
 ```
 
@@ -10,7 +10,6 @@ const ods = require('./ods.js')
 ```
 npm test
 ```
-
 
 ## Reference
 - [Open Data Structures](http://opendatastructures.org/)
