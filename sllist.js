@@ -19,6 +19,17 @@ class SLList extends BaseCollection{
 		this.length++
 		return value
 	}
+
+	pop() {
+		if (this.length === 0) {return undefined}
+		const value = this.head.value
+		this.head = this.head.next
+		this.length--
+		if (this.length === 0) {
+			this.tail = undefined
+		}
+		return value
+	}
 }
 
 class Node {
