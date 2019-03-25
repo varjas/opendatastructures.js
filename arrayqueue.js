@@ -1,7 +1,7 @@
-const BaseCollection = require('./base.js')
+const BaseSet = require('./base.js').BaseSet
 
 /** Implementation of ArrayQueue data structure */
-class ArrayQueue extends BaseCollection {
+class ArrayQueue extends BaseSet {
 	constructor() {
 		super()
 		this.array = new Array(1)

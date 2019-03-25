@@ -5,7 +5,8 @@ const structureNames = [
 	'ArrayDeque',
 	'DualArrayDeque',
 	'RootishArrayStack',
-	'SLList'
+	'SLList',
+	'DLList'
 ]
 
 let structures = {}

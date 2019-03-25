@@ -1,7 +1,7 @@
-const BaseCollection = require('./base.js')
+const BaseList = require('./base.js').BaseList
 
 /** Implementation of doubly-linked list data structure */
-class DLList extends BaseCollection{
+class DLList extends BaseList{
 	constructor() {
 		super()
 		this.dummy = new Node(undefined)

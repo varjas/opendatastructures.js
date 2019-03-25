@@ -1,7 +1,7 @@
-const BaseCollection = require('./base.js')
+const BaseSet = require('./base.js').BaseSet
 
 /** Implementation of FastArrayStack data structure */
-class FastArrayStack extends BaseCollection {
+class FastArrayStack extends BaseSet {
 	constructor() {
 		super()
 		this.array = []

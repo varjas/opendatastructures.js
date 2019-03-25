@@ -4,17 +4,29 @@ class BaseCollection {
 		return (a > b) ? a : b
 	}
 
-	// Generic validate index for data structure length
-	_indexWithinRange(index) {
-		if (index < 0 || index >= this.length) {
-			throw new Error('IndexError')
-		}
-	}
-
 	// Generic return length function that works with most data structures
 	size() {
 		return this.length
 	}
 }
 
-module.exports = BaseCollection
+// class BaseSet {
+class BaseSet extends BaseCollection {
+	constructor() {
+		super()
+	}
+	// Generic validate index for data structure length
+	_indexWithinRange(index) {
+		if (index < 0 || index >= this.length) {
+			throw new Error('IndexError')
+		}
+	}
+}
+
+class BaseList extends BaseCollection {
+	constructor() {
+		super()
+	}
+}
+
+module.exports = {BaseSet, BaseList}
