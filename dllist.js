@@ -10,7 +10,7 @@ class DLList extends BaseCollection{
 		this.length = 0
 	}
 
-	getNode(index) {
+	_getNode(index) {
 		let value
 		if (index < this.length / 2) {
 			value = this.dummy.next
@@ -24,6 +24,41 @@ class DLList extends BaseCollection{
 			}
 		}
 		return value
+	}
+
+	_addBefore(node, value) {
+		let newNode = new Node(value)
+		newNode.prev = node.prev
+		newNode.next = node
+		newNode.next.prev = newNode
+		newNode.prev.next = newNode
+		this.length++
+		return newNode
+	}
+
+	_removeNode(node) {
+		node.prev.next = node.next
+		node.next.prev = node.prev
+		this.length--
+	}
+
+	get(index) {
+		return this._getNode(index).value
+	}
+
+	set(index, value) {
+		let specificNode = this._getNode(index)
+		const current = specificNode.value
+		specificNode.value = value
+		return current
+	}
+
+	add(index, value) {
+		this._addBefore(this._getNode(index), value)
+	}
+
+	remove(index) {
+		this._removeNode(this._getNode(index))
 	}
 }
 
