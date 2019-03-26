@@ -8,18 +8,19 @@ class BaseCollection {
 	size() {
 		return this.length
 	}
+
+	// Generic validate index for data structure length
+	_indexWithinRange(index) {
+		if (index < 0 || index >= this.length) {
+			throw new Error('IndexError')
+		}
+	}
 }
 
 // class BaseSet {
 class BaseSet extends BaseCollection {
 	constructor() {
 		super()
-	}
-	// Generic validate index for data structure length
-	_indexWithinRange(index) {
-		if (index < 0 || index >= this.length) {
-			throw new Error('IndexError')
-		}
 	}
 }
 

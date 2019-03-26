@@ -43,10 +43,12 @@ class DLList extends BaseList{
 	}
 
 	get(index) {
+		this._indexWithinRange(index)
 		return this._getNode(index).value
 	}
 
 	set(index, value) {
+		this._indexWithinRange(index)
 		let specificNode = this._getNode(index)
 		const current = specificNode.value
 		specificNode.value = value
@@ -54,6 +56,7 @@ class DLList extends BaseList{
 	}
 
 	add(index, value) {
+		if (index < 0 || index > this.length) {throw new Error('IndexError')}
 		this._addBefore(this._getNode(index), value)
 	}
 
