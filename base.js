@@ -17,7 +17,6 @@ class BaseCollection {
 	}
 }
 
-// class BaseSet {
 class BaseSet extends BaseCollection {
 	constructor() {
 		super()

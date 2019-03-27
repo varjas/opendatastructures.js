@@ -11,19 +11,19 @@ class DLList extends BaseList{
 	}
 
 	_getNode(index) {
-		let value
+		let node
 		if (index < this.length / 2) {
-			value = this.dummy.next
-			for (let i = index; i >= 0; i--) {
-				value = value.next
+			node = this.dummy.next
+			for (let i = index; i > 0; i--) {
+				node = node.next
 			}
 		}else{
-			value = this.dummy
-			for (let i = this.length - index; i >= 0; i--) {
-				value = value.prev
+			node = this.dummy
+			for (let i = this.length - index; i > 0; i--) {
+				node = node.prev
 			}
 		}
-		return value
+		return node
 	}
 
 	_addBefore(node, value) {
