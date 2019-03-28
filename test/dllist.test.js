@@ -4,6 +4,8 @@ const ods = require('../ods.js')
 // Test DLList data structure
 test('DLList add', () => {
 	let l = new ods.DLList()
+	expect(() => l.add(-1, -1)).toThrowError('IndexError')
+	expect(() => l.add(1, 1)).toThrowError('IndexError')
 	expect(l.length).toBe(0)
 	for (let i = 0; i < 17; i++) {
 		l.add(i, i)
