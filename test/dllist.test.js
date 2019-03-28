@@ -43,3 +43,17 @@ test('DLList set', () => {
 		expect(l.get(i)).toBe(i * 2)
 	}
 })
+
+test('DLList remove', () => {
+	let l = new ods.DLList()
+	for (let i = 0; i < 17; i++) {
+		l.add(i, i)
+	}
+	l.remove(16)
+	l.remove(5)
+	l.remove(0)
+	expect(l.get(0)).toBe(1)
+	expect(l.get(4)).toBe(6)
+	expect(l.get(13)).toBe(15)
+	expect(l.length).toBe(14)
+})
