@@ -28,3 +28,18 @@ test('DLList get', () => {
 		expect(l.get(i)).toBe(i)
 	}
 })
+
+test('DLList set', () => {
+	let l = new ods.DLList()
+	expect(() => l.get(0)).toThrowError('IndexError')
+	expect(() => l.get(-1)).toThrowError('IndexError')
+	for (let i = 0; i < 17; i++) {
+		l.add(i, i)
+	}
+	for (let i = 0; i < 17; i++) {
+		expect(l.set(i, i * 2)).toBe(i)
+	}
+	for (let i = 0; i < 17; i++) {
+		expect(l.get(i)).toBe(i * 2)
+	}
+})
