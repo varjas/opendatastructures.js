@@ -48,6 +48,8 @@ test('DLList set', () => {
 
 test('DLList remove', () => {
 	let l = new ods.DLList()
+	expect(() => l.get(0)).toThrowError('IndexError')
+	expect(() => l.get(-1)).toThrowError('IndexError')
 	for (let i = 0; i < 17; i++) {
 		l.add(i, i)
 	}

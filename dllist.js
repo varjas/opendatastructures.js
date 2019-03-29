@@ -61,6 +61,7 @@ class DLList extends BaseList{
 	}
 
 	remove(index) {
+		this._indexWithinRange(index)
 		this._removeNode(this._getNode(index))
 	}
 }
