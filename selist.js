@@ -31,6 +31,13 @@ class SEList extends BaseList{
 			return [block, index - internalIndex]
 		}
 	}
+
+	get(index) {
+		const location = this._getLocation(index)
+		const block = location[0]
+		const internalIndex = location[1]
+		return block.deque.get(internalIndex)
+	}
 }
 
 class Deque extends ArrayDeque {
