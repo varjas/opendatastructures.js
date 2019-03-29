@@ -38,6 +38,13 @@ class SEList extends BaseList{
 		const internalIndex = location[1]
 		return block.deque.get(internalIndex)
 	}
+
+	set(index, value) {
+		const location = this._getLocation(index)
+		const block = location[0]
+		const internalIndex = location[1]
+		return block.deque.set(internalIndex, value)
+	}
 }
 
 class Deque extends ArrayDeque {
