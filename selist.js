@@ -77,6 +77,22 @@ class SEList extends BaseList{
 			currentBlock = currentBlock.prev
 		}
 	}
+
+	_removeNode(node) {
+		node.prev.next = node.next
+		node.next.prev = node.prev
+	}
+
+	_gather(block) {
+		let currentBlock = block
+		for (let j = 0; j < this.blockSize - 1; j++) {
+			while (currentBlock.deque.size() < this.blockSize) {
+				currentBlock.deque.addLast(currentBlock.next.deque.removeFirst())
+			}
+			currentBlock = currentBlock.next
+		}
+		this._removeNode(currentBlock)
+	}
 }
 
 class Deque extends ArrayDeque {
