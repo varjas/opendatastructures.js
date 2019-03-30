@@ -45,6 +45,24 @@ class SEList extends BaseList{
 		const internalIndex = location[1]
 		return block.deque.set(internalIndex, value)
 	}
+
+	_addBefore(node, value) {
+		let newNode = new Node(value)
+		newNode.prev = node.prev
+		newNode.next = node
+		newNode.next.prev = newNode
+		newNode.prev.next = newNode
+		return newNode
+	}
+
+	append(value) {
+		let last = dummy.prev
+		if (last === dummy || last.deque.size() === this.blockSize + 1) {
+			last = this._addBefore(dummy)
+		}
+		last.deque.append(value)
+		this.length++
+	}
 }
 
 class Deque extends ArrayDeque {
