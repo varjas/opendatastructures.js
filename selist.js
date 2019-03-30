@@ -14,7 +14,7 @@ class SEList extends BaseList{
 
 	_getLocation(index) {
 		let block
-		if (index < this.length / 2) {
+		if (index < this.size() / 2) {
 			block = this.dummy.next
 			while (index >= block.deque.size()) {
 				index = index - block.deque.size()
@@ -23,7 +23,7 @@ class SEList extends BaseList{
 			return [block, index]
 		}else{
 			block = this.dummy
-			let internalIndex = this.length
+			let internalIndex = this.size()
 			while (index < internalIndex) {
 				block = block.prev
 				internalIndex = internalIndex - block.deque.size()
@@ -56,9 +56,9 @@ class SEList extends BaseList{
 	}
 
 	append(value) {
-		let last = dummy.prev
-		if (last === dummy || last.deque.size() === this.blockSize + 1) {
-			last = this._addBefore(dummy)
+		let last = this.dummy.prev
+		if (last === this.dummy || last.deque.size() === this.blockSize + 1) {
+			last = this._addBefore(this.dummy)
 		}
 		last.deque.append(value)
 		this.length++
@@ -95,7 +95,8 @@ class SEList extends BaseList{
 	}
 
 	add(index, value) {
-		if (index === this.length) {
+		if (index < 0 || index > this.size()) {throw new Error('IndexError')}
+		if (index === this.size()) {
 			this.append(value)
 			return
 		}
@@ -117,11 +118,11 @@ class SEList extends BaseList{
 		}
 
 		if (currentBlock === this.dummy) {
-			currentBlock = this._addBefore(currentBlock)
+			// currentBlock = this._addBefore(currentBlock)
 		}
 
-		while (currentBlock !=== block) {
-			currentBlock.deque.addFirst(currentBlock.prev.deque.removeLast())
+		while (currentBlock !== block) {
+			// currentBlock.deque.addFirst(currentBlock.prev.deque.removeLast())
 			currentBlock = currentBlock.prev
 		}
 
