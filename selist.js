@@ -93,6 +93,41 @@ class SEList extends BaseList{
 		}
 		this._removeNode(currentBlock)
 	}
+
+	add(index, value) {
+		if (index === this.length) {
+			this.append(value)
+			return
+		}
+		const location = this._getLocation(index)
+		const block = location[0]
+		const internalIndex = location[1]
+
+		let currentIndex = 0
+		let currentBlock = block
+
+		while (currentIndex < this.blockSize && currentBlock !== this.dummy && currentBlock.deque.size() === this.blockSize + 1) {
+			currentBlock = currentBlock.next
+			currentIndex++
+		}
+
+		if (currentIndex === this.blockSize) {
+			this._spread(block)
+			currentBlock = block
+		}
+
+		if (currentBlock === this.dummy) {
+			currentBlock = this._addBefore(currentBlock)
+		}
+
+		while (currentBlock !=== block) {
+			currentBlock.deque.addFirst(currentBlock.prev.deque.removeLast())
+			currentBlock = currentBlock.prev
+		}
+
+		currentBlock.deque.add(internalIndex, value)
+		this.length++
+	}
 }
 
 class Deque extends ArrayDeque {
