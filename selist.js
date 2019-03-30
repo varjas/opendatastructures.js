@@ -63,6 +63,20 @@ class SEList extends BaseList{
 		last.deque.append(value)
 		this.length++
 	}
+
+	_spread(block) {
+		let currentBlock = block
+		for (let i = 0; i < this.blockSize; i++) {
+			currentBlock = currentBlock.next
+		}
+		currentBlock = this._addBefore(currentBlock)
+		while (currentBlock !== block) {
+			while (currentBlock.deque.size() < this.blockSize) {
+				currentBlock.deque.addFirst(currentBlock.prev.deque.removeLast())
+			}
+			currentBlock = currentBlock.prev
+		}
+	}
 }
 
 class Deque extends ArrayDeque {
