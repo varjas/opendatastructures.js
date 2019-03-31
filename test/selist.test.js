@@ -14,5 +14,5 @@ test('SEList add', () => {
 	expect(l.dummy.next.next.deque.array).toEqual([4,5,6,7])
 	expect(l.dummy.next.next.next.deque.array).toEqual([8,9,10,11])
 	expect(l.dummy.next.next.next.next.deque.array).toEqual([12,13,14,15])
-	expect(l.dummy.next.next.next.next.next.deque.array).toEqual([16])
+	expect(l.dummy.next.next.next.next.next.deque.array).toEqual([16,undefined,undefined,undefined])
 })

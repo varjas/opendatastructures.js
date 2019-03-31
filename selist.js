@@ -5,8 +5,7 @@ const ArrayDeque = require('./arraydeque.js')
 class SEList extends BaseList{
 	constructor(blockSize) {
 		super()
-		// this.dummy = new Node(undefined)
-		this.dummy = new Node()
+		this.dummy = new Node(0)
 		this.dummy.prev = this.dummy
 		this.dummy.next = this.dummy
 		this.blockSize = blockSize
@@ -48,15 +47,11 @@ class SEList extends BaseList{
 	}
 
 	_addBefore(node) {
-	// _addBefore(node, value) {
-		// let newNode = new Node(value)
-		let newNode = new Node()
+		let newNode = new Node(this.blockSize)
 		newNode.prev = node.prev
 		newNode.next = node
 		newNode.next.prev = newNode
 		newNode.prev.next = newNode
-		// newNode.deque.append(value)
-		// console.log('new node', value, newNode)
 		return newNode
 	}
 
@@ -137,18 +132,18 @@ class SEList extends BaseList{
 }
 
 class Deque extends ArrayDeque {
-	constructor() {
-		super()
+	constructor(blockSize) {
+		super(blockSize + 1)
 	}
 
-	// _resize() {
-	// 	return
-	// }
+	_resize() {
+		return
+	}
 }
 
 class Node {
-	constructor() {
-		this.deque = new Deque()
+	constructor(blockSize) {
+		this.deque = new Deque(blockSize)
 		this.next = undefined
 		this.prev = undefined
 	}

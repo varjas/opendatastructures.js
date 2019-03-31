@@ -2,9 +2,9 @@ const BaseList = require('./base.js').BaseList
 
 /** Implementation of ArrayDeque data structure */
 class ArrayDeque extends BaseList {
-	constructor() {
+	constructor(arraySize=1) {
 		super()
-		this.array = new Array(1)
+		this.array = new Array(arraySize)
 		this.nextElement = 0
 		this.length = 0
 	}
