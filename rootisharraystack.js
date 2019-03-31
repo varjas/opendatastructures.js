@@ -1,8 +1,10 @@
+const BaseList = require('./base.js').BaseList
 const ArrayStack = require('./arraystack.js')
 
 /** Implementation of RootishArrayStack data structure */
-class RootishArrayStack {
+class RootishArrayStack extends BaseList {
 	constructor() {
+		super()
 		this.blocks = new ArrayStack()
 		this.length = 0
 	}

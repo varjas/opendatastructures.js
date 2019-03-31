@@ -1,7 +1,7 @@
-const BaseSet = require('./base.js').BaseSet
+const BaseList = require('./base.js').BaseList
 
 /** Implementation of ArrayStack data structure */
-class ArrayStack extends BaseSet {
+class ArrayStack extends BaseList {
 	constructor() {
 		super()
 		this.array = new Array(1)

@@ -27,6 +27,28 @@ class BaseList extends BaseCollection {
 	constructor() {
 		super()
 	}
+
+	append(value) {
+		this.add(this.size(), value)
+	}
+
+	addFirst(value) {
+		this.add(0, value)
+	}
+
+	addLast(value) {
+		this.add(this.size(), value)
+	}
+
+	removeFirst() {
+		this.remove(0)
+	}
+
+	removeLast() {
+		this.remove(this.size() - 1)
+	}
 }
+
+// Update base functions
 
 module.exports = {BaseSet, BaseList}

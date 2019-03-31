@@ -15,3 +15,16 @@ test('ArrayStack index range', () => {
 	expect(() => a._indexWithinRange(1)).toThrowError('IndexError')
 	expect(() => a._indexWithinRange(-1)).toThrowError('IndexError')
 })
+
+test('ArrayStack append', () => {
+	let a = new ods.ArrayStack()
+	a.append(0)
+	expect(a.length).toBe(1)
+	expect(a.array).toEqual([0])
+	a.append(1)
+	expect(a.length).toBe(2)
+	expect(a.array).toEqual([0,1])
+	a.append(2)
+	expect(a.length).toBe(3)
+	expect(a.array).toEqual([0,1,2,undefined])
+})

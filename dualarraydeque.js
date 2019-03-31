@@ -1,8 +1,10 @@
+const BaseList = require('./base.js').BaseList
 const ArrayStack = require('./arraystack.js')
 
 /** Implementation of DualArrayDeque data structure */
-class DualArrayDeque {
+class DualArrayDeque extends BaseList {
 	constructor() {
+		super()
 		this.front = new ArrayStack()
 		this.back = new ArrayStack()
 	}

@@ -1,7 +1,7 @@
-const BaseSet = require('./base.js').BaseSet
+const BaseList = require('./base.js').BaseList
 
 /** Implementation of ArrayDeque data structure */
-class ArrayDeque extends BaseSet {
+class ArrayDeque extends BaseList {
 	constructor() {
 		super()
 		this.array = new Array(1)
