@@ -49,6 +49,4 @@ class BaseList extends BaseCollection {
 	}
 }
 
-// Update base functions
-
 module.exports = {BaseSet, BaseList}

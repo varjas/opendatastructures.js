@@ -48,11 +48,15 @@ class SEList extends BaseList{
 	}
 
 	_addBefore(node) {
+	// _addBefore(node, value) {
+		// let newNode = new Node(value)
 		let newNode = new Node()
 		newNode.prev = node.prev
 		newNode.next = node
 		newNode.next.prev = newNode
 		newNode.prev.next = newNode
+		// newNode.deque.append(value)
+		// console.log('new node', value, newNode)
 		return newNode
 	}
 
@@ -137,9 +141,9 @@ class Deque extends ArrayDeque {
 		super()
 	}
 
-	_resize() {
-		return
-	}
+	// _resize() {
+	// 	return
+	// }
 }
 
 class Node {
