@@ -141,7 +141,7 @@ class SEList extends BaseList{
 		}
 		block.deque.remove(internalIndex)
 
-		while (block.deque.size() < this.blockSize - 1 && block.next != this.dummy) {
+		while (block.deque.size() < this.blockSize - 1 && block.next !== this.dummy) {
 			block.deque.addLast(block.next.deque.removeFirst())
 			block = block.next
 		}

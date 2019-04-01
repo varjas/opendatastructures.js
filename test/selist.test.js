@@ -18,6 +18,16 @@ test('SEList add', () => {
 	expect(l.dummy.next.next.next.deque.array).toEqual([8,9,10,11])
 	expect(l.dummy.next.next.next.next.deque.array).toEqual([12,13,14,15])
 	expect(l.dummy.next.next.next.next.next.deque.array).toEqual([16,undefined,undefined,undefined])
+
+	l = new ods.SEList(3)
+	let length = 4
+	// Add integer values to index zero
+	for (let i = 0; i < length; i++) {
+		l.add(0, i)
+	}
+	for (let i = 0; i < length; i++) {
+		expect(l.get(i)).toBe(length - 1 - i)
+	}
 })
 
 test('SEList get', () => {
@@ -69,3 +79,11 @@ test('SEList remove', () => {
 		expect(l.length).toBe(12 - i)
 	}
 })
+
+function printBlocks(list) {
+	let block = list.dummy.next
+	while (block !== list.dummy) {
+		console.log(block.deque.array)
+		block = block.next
+	}
+}
