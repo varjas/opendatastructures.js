@@ -47,3 +47,25 @@ test('SEList set', () => {
 		expect(l.get(i)).toBe(i * 2)
 	}
 })
+
+test('SEList remove', () => {
+	let l = new ods.SEList(3)
+	// Add integer values that correspond with each index
+	for (let i = 0; i < 17; i++) {
+		l.add(i, i)
+	}
+	l.remove(0)
+	expect(l.length).toBe(16)
+	l.remove(3)
+	expect(l.length).toBe(15)
+	l.remove(5)
+	expect(l.length).toBe(14)
+	l.remove(l.length - 1)
+	expect(l.length).toBe(13)
+
+	// Remove remaining values from the first index
+	for (let i = 0; i < l.length; i++) {
+		l.remove(0)
+		expect(l.length).toBe(12 - i)
+	}
+})

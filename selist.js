@@ -123,6 +123,35 @@ class SEList extends BaseList{
 		currentBlock.deque.add(internalIndex, value)
 		this.length++
 	}
+
+	remove(index) {
+		this._indexWithinRange(index)
+		let [block, internalIndex] = this._getLocation(index)
+
+		let currentIndex = 0
+		let currentBlock = block
+
+		while (currentIndex < this.blockSize && currentBlock != this.dummy && currentBlock.deque.size() === this.blockSize - 1) {
+			currentBlock = currentBlock.next
+			currentIndex++
+		}
+
+		if (currentIndex === this.blockSize) {
+			this._gather(block)
+		}
+		block.deque.remove(internalIndex)
+
+		while (block.deque.size() < this.blockSize - 1 && block.next != this.dummy) {
+			block.deque.addLast(block.next.deque.removeFirst())
+			block = block.next
+		}
+
+		if (block.deque.size() === 0) {
+			this._removeNode(block)
+		}
+
+		this.length--
+	}
 }
 
 class Deque extends ArrayDeque {
