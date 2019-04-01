@@ -19,3 +19,31 @@ test('SEList add', () => {
 	expect(l.dummy.next.next.next.next.deque.array).toEqual([12,13,14,15])
 	expect(l.dummy.next.next.next.next.next.deque.array).toEqual([16,undefined,undefined,undefined])
 })
+
+test('SEList get', () => {
+	let l = new ods.SEList(3)
+	// Add integer values that correspond with each index
+	for (let i = 0; i < 17; i++) {
+		l.add(i, i)
+	}
+	// Validate that each value was set correctly
+	for (let i = 0; i < 17; i++) {
+		expect(l.get(i)).toBe(i)
+	}
+})
+
+test('SEList set', () => {
+	let l = new ods.SEList(3)
+	// Add integer values that correspond with each index
+	for (let i = 0; i < 17; i++) {
+		l.add(i, i)
+	}
+	// Set each index to twice the size of the integer value
+	for (let i = 0; i < 17; i++) {
+		l.set(i, i * 2)
+	}
+	// Validate that each value was set correctly
+	for (let i = 0; i < 17; i++) {
+		expect(l.get(i)).toBe(i * 2)
+	}
+})
