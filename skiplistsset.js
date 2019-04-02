@@ -22,6 +22,12 @@ class SkiplistSSet extends BaseSet{
 		}
 		return currentNode
 	}
+
+	find(value) {
+		let currentNode = this._findPredNode(value)
+		if (currentNode.next[0] === undefined) {return undefined}
+		return currentNode.next[0].value
+	}
 }
 
 class Node {
