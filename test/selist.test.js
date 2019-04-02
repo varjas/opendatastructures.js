@@ -20,11 +20,12 @@ test('SEList add', () => {
 	expect(l.dummy.next.next.next.next.next.deque.array).toEqual([16,undefined,undefined,undefined])
 
 	l = new ods.SEList(3)
-	let length = 4
+	let length = 17
 	// Add integer values to index zero
 	for (let i = 0; i < length; i++) {
 		l.add(0, i)
 	}
+	// Validate that values were added correctly
 	for (let i = 0; i < length; i++) {
 		expect(l.get(i)).toBe(length - 1 - i)
 	}

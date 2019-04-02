@@ -33,19 +33,19 @@ class BaseList extends BaseCollection {
 	}
 
 	addFirst(value) {
-		this.add(0, value)
+		return this.add(0, value)
 	}
 
 	addLast(value) {
-		this.add(this.size(), value)
+		return this.add(this.size(), value)
 	}
 
 	removeFirst() {
-		this.remove(0)
+		return this.remove(0)
 	}
 
 	removeLast() {
-		this.remove(this.size() - 1)
+		return this.remove(this.size() - 1)
 	}
 }
 
