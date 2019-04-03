@@ -62,6 +62,27 @@ class SkiplistSSet extends BaseSet{
 		this.length++
 		return true
 	}
+
+	remove(value) {
+		let removed = false
+		let node = this.sentinel
+		let currentHeight = this.height
+		while (currentHeight >= 0) {
+			while (node.next[currentHeight] !== undefined && node.next[currentHeight].value < value) {
+				node = node.next[currentHeight]
+			}
+			if (node.next[currentHeight] !== undefined && node.next[currentHeight].value === value) {
+				removed = true
+				node.next[currentHeight] = node.next[currentHeight].next[currentHeight]
+				if (node === this.sentinel && node.next[currentHeight] === undefined) {
+					this.height--
+				}
+			}
+			currentHeight--
+		}
+		if (removed === true) {this.length--}
+		return removed
+	}
 }
 
 class Node {
