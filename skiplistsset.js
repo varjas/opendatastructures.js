@@ -28,6 +28,16 @@ class SkiplistSSet extends BaseSet{
 		if (currentNode.next[0] === undefined) {return undefined}
 		return currentNode.next[0].value
 	}
+
+	_pickHeight() {
+		let random = Math.floor(Math.random() * 2147483647)
+		let value = 0
+		while (random & 1) {
+			value++
+			random = Math.floor(random / 2)
+		}
+		return value
+	}
 }
 
 class Node {
