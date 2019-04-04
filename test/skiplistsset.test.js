@@ -28,3 +28,27 @@ test('SkiplistSSet find', () => {
 	}
 	expect(l.find(20)).toBe(undefined)
 })
+
+test('SkiplistSSet remove', () => {
+	let l = new ods.SkiplistSSet()
+	expect(l.remove(-1)).toBe(false)
+	expect(l.remove(10)).toBe(false)
+	// Add integer values
+	for (let i = 0; i < 17; i++) {
+		l.add(i)
+	}
+	// Remove integer values
+	for (let i = 0; i < 17; i++) {
+		expect(l.remove(i)).toBe(true)
+		expect(l.length).toBe(16 - i)
+	}
+	// Add integer values
+	for (let i = 0; i < 17; i++) {
+		l.add(i)
+	}
+	// Remove integer values
+	for (let i = 17 - 1; i >= 0; i--) {
+		expect(l.remove(i)).toBe(true)
+		expect(l.length).toBe(i)
+	}
+})
