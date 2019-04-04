@@ -13,7 +13,6 @@ class SkiplistSSet extends BaseSet{
 	_findPredNode(value) {
 		let currentNode = this.sentinel
 		let currentHeight = this.height
-
 		while (currentHeight >= 0) {
 			while (currentNode.next[currentHeight] !== undefined && currentNode.next[currentHeight].value < value) {
 				currentNode = currentNode.next[currentHeight]
@@ -47,15 +46,15 @@ class SkiplistSSet extends BaseSet{
 				node = node.next[currentHeight]
 			}
 			if (node.next[currentHeight] !== undefined && node.next[currentHeight].value === value) {return false}
-			self.stack[currentHeight] = node
+			this.stack[currentHeight] = node
 			currentHeight--
 		}
 		let newNode = new Node(value, this._pickHeight())
-		while (this.height < newNode.height) {
+		while (this.height < newNode.height()) {
 			this.height++
-			self.stack = this.sentinel
+			this.stack[this.height] = this.sentinel
 		}
-		for (let i = 0; i < newNode.next.length) {
+		for (let i = 0; i < newNode.next.length; i++) {
 			newNode.next[i] = this.stack[i].next[i]
 			this.stack[i].next[i] = newNode
 		}

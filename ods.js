@@ -7,7 +7,8 @@ const structureNames = [
 	'RootishArrayStack',
 	'SLList',
 	'DLList',
-	'SEList'
+	'SEList',
+	'SkiplistSSet'
 ]
 
 let structures = {}
