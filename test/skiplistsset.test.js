@@ -21,10 +21,9 @@ test('SkiplistSSet find', () => {
 	for (let i = 0; i < 17; i++) {
 		l.add(i)
 	}
-	// Remove integer values
+	// Find integer values
 	for (let i = 0; i < 17; i++) {
 		expect(l.find(i)).toBe(i)
-		// expect(l.length).toBe(16 - i)
 	}
 	expect(l.find(20)).toBe(undefined)
 })
@@ -37,7 +36,7 @@ test('SkiplistSSet remove', () => {
 	for (let i = 0; i < 17; i++) {
 		l.add(i)
 	}
-	// Remove integer values
+	// Remove integer values from start
 	for (let i = 0; i < 17; i++) {
 		expect(l.remove(i)).toBe(true)
 		expect(l.length).toBe(16 - i)
@@ -46,9 +45,15 @@ test('SkiplistSSet remove', () => {
 	for (let i = 0; i < 17; i++) {
 		l.add(i)
 	}
-	// Remove integer values
+	// Remove integer values from end
 	for (let i = 17 - 1; i >= 0; i--) {
 		expect(l.remove(i)).toBe(true)
 		expect(l.length).toBe(i)
 	}
+	// Add integer values
+	for (let i = 0; i < 17; i++) {
+		l.add(i)
+	}
+	expect(l.remove(10)).toBe(true)
+	expect(l.remove(10)).toBe(false)
 })
