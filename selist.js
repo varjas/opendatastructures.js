@@ -2,7 +2,7 @@ const BaseList = require('./base.js').BaseList
 const ArrayDeque = require('./arraydeque.js')
 
 /** Implementation of space-efficient linked list data structure */
-class SEList extends BaseList{
+class SEList extends BaseList {
 	constructor(blockSize) {
 		super()
 		this.dummy = new Node(0)

@@ -1,7 +1,7 @@
 const BaseSet = require('./base.js').BaseSet
 
 /** Implementation of skiplist data structure */
-class SkiplistSSet extends BaseSet{
+class SkiplistSSet extends BaseSet {
 	constructor() {
 		super()
 		this.sentinel = new Node(undefined, 32)

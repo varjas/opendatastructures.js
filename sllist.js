@@ -1,7 +1,7 @@
 const BaseList = require('./base.js').BaseList
 
 /** Implementation of single-linked list data structure */
-class SLList extends BaseList{
+class SLList extends BaseList {
 	constructor() {
 		super()
 		this.head = undefined
