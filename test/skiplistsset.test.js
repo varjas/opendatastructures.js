@@ -7,8 +7,9 @@ test('SkiplistSSet add', () => {
 	expect(l.length).toBe(0)
 	// Add integer values
 	for (let i = 0; i < 17; i++) {
-		l.add(i)
+		expect(l.add(i)).toBe(true)
 	}
+	// Validate that unique values can only be addded once
 	for (let i = 0; i < 17; i++) {
 		expect(l.add(i)).toBe(false)
 	}
@@ -54,6 +55,33 @@ test('SkiplistSSet remove', () => {
 	for (let i = 0; i < 17; i++) {
 		l.add(i)
 	}
+	// Validate that unique values can only be removed once
 	expect(l.remove(10)).toBe(true)
 	expect(l.remove(10)).toBe(false)
 })
+
+// Print visual representation of skiplist 
+function printSkiplist(list) {
+	// Generate rows for each height
+	let output = new Array(list.height).fill([])
+	// Iterate through heights
+	for (let h = list.height; h >= 0; h--) {
+		let layer = []
+		let previous = -1
+		let node = list.sentinel.next[h]
+		// Iterate through each node
+		while (node !== undefined) {
+			// Add blanks for values that are not present
+			for (let i = previous + 1; i < node.value; i++) {
+				layer.push(' '.repeat(i.toString().length))
+			}
+			// Add values that are present
+			layer.push(node.value.toString())
+			// Save current value for offset on next iteration
+			previous = node.value
+			// Move to next node
+			node = node.next[h]
+		}
+		console.log(layer.join(' '))
+	}
+}
