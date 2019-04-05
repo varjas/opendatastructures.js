@@ -8,7 +8,8 @@ const structureNames = [
 	'SLList',
 	'DLList',
 	'SEList',
-	'SkiplistSSet'
+	'SkiplistSSet',
+	'SkiplistList'
 ]
 
 let structures = {}
