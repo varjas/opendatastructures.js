@@ -34,6 +34,29 @@ class SkiplistList extends BaseList {
 		return currentNode
 	}
 
+	_addNode(index, node) {
+		let currentNode = this.sentinel
+		const nodeHeight = node.height()
+		let currentHeight = this.height
+		let currentIndex = -1
+		while (currentHeight >= 0) {
+			while (currentNode.next[currentHeight] !== undefined && (currentIndex + currentNode.length[currentHeight]) < index) {
+				currentIndex += currentNode.length[currentHeight]
+				currentNode = currentNode.next[currentHeight]
+			}
+			currentNode.length[currentHeight]++
+			if (currentHeight <= nodeHeight) {
+				node.next[currentHeight] = currentNode.next[currentHeight]
+				currentNode.next[currentHeight] = node
+				node.length[currentHeight] = currentNode.length[currentHeight] - (index - currentIndex)
+				currentNode.length[currentHeight] = index - currentIndex
+			}
+			currentHeight--
+		}
+		this.length++
+		return currentNode
+	}
+
 	get(index) {
 		this._indexWithinRange(index)
 		return this._findPredNode(index).next[0].value
@@ -45,6 +68,15 @@ class SkiplistList extends BaseList {
 		const currentValue = currentNode.value
 		currentNode.value = value
 		return currentValue
+	}
+
+	add(index, value) {
+		if (index < 0 || index > this.size()) {throw new Error('IndexError')}
+		const newNode = new Node(value, this._pickHeight())
+		if (newNode.height() > this.height) {
+			this.height = newNode.height()
+		}
+		this._addNode(index, newNode)
 	}
 }
 
