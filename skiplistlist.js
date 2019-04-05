@@ -33,6 +33,19 @@ class SkiplistList extends BaseList {
 		}
 		return currentNode
 	}
+
+	get(index) {
+		this._indexWithinRange(index)
+		return this._findPredNode(index).next[0].value
+	}
+
+	set(index, value) {
+		this._indexWithinRange(index)
+		let currentNode = this._findPredNode(index).next[0]
+		const currentValue = currentNode.value
+		currentNode.value = value
+		return currentValue
+	}
 }
 
 class Node {
