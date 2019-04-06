@@ -15,6 +15,22 @@ test('SkiplistList add', () => {
 	expect(l.length).toBe(17)
 })
 
+test('SkiplistList get', () => {
+	let l = new ods.SkiplistList()
+	// Check index errors and default length initialization
+	expect(() => l.get(-1)).toThrowError('IndexError')
+	expect(() => l.get(1)).toThrowError('IndexError')
+	// Add integer values
+	for (let i = 0; i < 17; i++) {
+		l.add(i, i)
+	}
+	// Find integer values
+	for (let i = 0; i < 4; i++) {
+		expect(l.get(i)).toBe(i)
+	}
+	printSkiplist(l)
+})
+
 // Print visual representation of skiplist 
 function printSkiplist(list) {
 	// Generate rows for each height
