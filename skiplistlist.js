@@ -96,7 +96,7 @@ class SkiplistList extends BaseList {
 				currentNode.length[currentHeight] = currentNode.length[currentHeight] + currentNode.next[currentHeight].length[currentHeight]
 				currentNode.next[currentHeight] = currentNode.next[currentHeight].next[currentHeight]
 				if (currentNode === this.sentinel && currentNode.next[currentHeight] === undefined) {
-					this.length--
+					this.height--
 				}
 			}
 			currentHeight--
