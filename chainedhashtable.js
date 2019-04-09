@@ -1,21 +1,22 @@
 const BaseSet = require('./base.js').BaseSet
 const ArrayStack = require('./arraystack.js')
 
-const w = 30 // 32
-const wExponent = 1 << w // 2 ** w
+const integerBits = 30 // 32
+const integerBitsExponent = 1 << integerBits // 2 ** integerBits
+
 
 /** Implementation of Set with a chained hash table data structure */
 class ChainedHashTable extends BaseSet {
 	constructor() {
 		super()
-		this.d = 1
-		this.table = this._createTable((1 << this.d))
+		this.dimension = 1
+		this.table = this._createTable((1 << this.dimension))
 		this.random = this._randomOddInt()
 		this.length = 0
 	}
 
 	_randomOddInt() {
-		return Math.random() * wExponent | 1
+		return Math.random() * integerBitsExponent | 1
 	}
 
 	_createTable(size) {
@@ -31,11 +32,20 @@ class ChainedHashTable extends BaseSet {
 	}
 
 	_hash(value) {
-
+		let hash = 0
+		let character
+		value = value.toString()
+		if (value.length === 0) {return 0}
+		for (let i = 0; i < value.length; i++) {
+			character = value.charCodeAt(i)
+			hash = ((hash << 5) - hash) + character
+			hash |= 0
+		}
+		return hash
 	}
 
 	hash(value) {
-
+		return (this.random * this._hash(value) % (integerBitsExponent)) >> (integerBits - this.dimension)
 	}
 
 	add(value) {
