@@ -36,7 +36,8 @@ class ChainedHashTable extends BaseSet {
 		const table = this.table
 		this.table = this._createTable(1 << this.dimension)
 		for (let i = 0; i < table.length; i++) {
-			for (let element of table[i]) {
+			for (let element of table[i].array) {
+				if (element === undefined) {continue}
 				this.add(element)
 			}
 		}
@@ -55,14 +56,13 @@ class ChainedHashTable extends BaseSet {
 		return hash
 	}
 
-
 	hash(value) {
 		return (this.random * this._hash(value) % (integerBitsExponent)) >> (integerBits - this.dimension)
 	}
 
 	add(value) {
-		if (this.find(value) !== undefined) {return false}
-		if (this.length + 1 > this.length(this.table)) {this._resize()}
+		if (this.find(value) !== null) {return false}
+		if (this.length + 1 > this.table.length) {this._resize()}
 		this.table[(this.hash(value))].append(value)
 		this.length++
 		return true
@@ -78,16 +78,16 @@ class ChainedHashTable extends BaseSet {
 			if (3 * this.length < this.table.length) {this._resize()}
 			return element
 		}
-		return undefined
+		return null
 	}
 
 	find(value) {
-		for (let element of this.table[this.hash(value)]) {
+		for (let element of this.table[this.hash(value)].array) {
 			if (element === value) {
 				return element
 			}
 		}
-		return undefined
+		return null
 	}
 }
 
