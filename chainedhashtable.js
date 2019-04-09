@@ -26,6 +26,10 @@ class ChainedHashTable extends BaseSet {
 
 	}
 
+	_removeValue(element) {
+
+	}
+
 	_hash(value) {
 
 	}
@@ -40,6 +44,19 @@ class ChainedHashTable extends BaseSet {
 		this.table[(this.hash(value))].append(value)
 		this.length++
 		return true
+	}
+
+	remove(value) {
+		let currentElements = this.table[this.hash(value)]
+		for (let element of currentElements) {
+			if (element === value) {
+				currentElements._removeValue(element)
+			}
+			this.length--
+			if (3 * this.length < this.table.length) {this._resize()}
+			return element
+		}
+		return undefined
 	}
 }
 
