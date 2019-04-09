@@ -58,6 +58,15 @@ class ChainedHashTable extends BaseSet {
 		}
 		return undefined
 	}
+
+	find(value) {
+		for (let element of this.table[this.hash(value)]) {
+			if (element === value) {
+				return element
+			}
+		}
+		return undefined
+	}
 }
 
 module.exports = ChainedHashTable
