@@ -28,11 +28,18 @@ class ChainedHashTable extends BaseSet {
 	}
 
 	_resize() {
-
-	}
-
-	_removeValue(element) {
-
+		this.dimension = 1
+		while ((1 << this.dimension) <= this.length) {
+			this.dimension += 1
+		}
+		this.length = 0
+		const table = this.table
+		this.table = this._createTable(1 << this.dimension)
+		for (let i = 0; i < table.length; i++) {
+			for (let element of table[i]) {
+				this.add(element)
+			}
+		}
 	}
 
 	_hash(value) {
@@ -65,7 +72,7 @@ class ChainedHashTable extends BaseSet {
 		let currentElements = this.table[this.hash(value)]
 		for (let element of currentElements) {
 			if (element === value) {
-				currentElements._removeValue(element)
+				currentElements.removeValue(element)
 			}
 			this.length--
 			if (3 * this.length < this.table.length) {this._resize()}
