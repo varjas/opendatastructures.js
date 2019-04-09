@@ -20,7 +20,11 @@ class ChainedHashTable extends BaseSet {
 	}
 
 	_createTable(size) {
-
+		let table = []
+		for (let i = 0; i < size; i++) {
+			table.push(new ArrayStack())
+		}
+		return table
 	}
 
 	_resize() {
@@ -35,7 +39,7 @@ class ChainedHashTable extends BaseSet {
 		let hash = 0
 		let character
 		value = value.toString()
-		if (value.length === 0) {return 0}
+		if (value.length === 0) {return hash}
 		for (let i = 0; i < value.length; i++) {
 			character = value.charCodeAt(i)
 			hash = ((hash << 5) - hash) + character
@@ -43,6 +47,7 @@ class ChainedHashTable extends BaseSet {
 		}
 		return hash
 	}
+
 
 	hash(value) {
 		return (this.random * this._hash(value) % (integerBitsExponent)) >> (integerBits - this.dimension)

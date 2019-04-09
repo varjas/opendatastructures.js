@@ -47,6 +47,14 @@ class BaseList extends BaseCollection {
 	removeLast() {
 		return this.remove(this.size() - 1)
 	}
+
+	removeValue(value) {
+		try {
+			return this.remove(this.indexOf(value))
+		}catch (e) {
+			return false
+		}
+	}
 }
 
 module.exports = {BaseSet, BaseList}
