@@ -9,7 +9,7 @@ class BaseCollection {
 		return this.length
 	}
 
-	// Generic validate index for data structure length
+	// Generic validate index is within length of data structure
 	_indexWithinRange(index) {
 		if (index < 0 || index >= this.length) {
 			throw new Error('IndexError')
