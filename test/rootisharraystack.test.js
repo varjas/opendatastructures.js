@@ -14,7 +14,22 @@ test('RootishArrayStack add', () => {
 	expect(a.blocks.array[2].array).toEqual([3,4,5])
 	expect(a.blocks.array[3].array).toEqual([6,7,8,9])
 	expect(a.blocks.array[4].array).toEqual([10,11,12,13,14])
-	expect(a.blocks.array[5].array).toEqual([15,16])
+	expect(a.blocks.array[5].array).toEqual([15,16,undefined,undefined,undefined,undefined])
+	printBlocks(a)
+	a.add(12,17)
+	a.add(12,18)
+	a.add(12,19)
+	a.add(12,20)
+	a.add(12,21)
+	expect(a.length).toBe(22)
+	expect(a.blocks.length).toBe(7)
+	expect(a.blocks.array[0].array).toEqual([0])
+	expect(a.blocks.array[1].array).toEqual([1,2])
+	expect(a.blocks.array[2].array).toEqual([3,4,5])
+	expect(a.blocks.array[3].array).toEqual([6,7,8,9])
+	expect(a.blocks.array[4].array).toEqual([10,11,21,20,19])
+	expect(a.blocks.array[5].array).toEqual([18,17,12,13,14,15])
+	expect(a.blocks.array[6].array).toEqual([16,undefined,undefined,undefined,undefined,undefined,undefined])
 })
 
 test('RootishArrayStack remove', () => {
@@ -25,15 +40,13 @@ test('RootishArrayStack remove', () => {
 	expect(a.remove(1)).toEqual(1)
 	expect(a.remove(8)).toEqual(9)
 	expect(a.length).toBe(15)
-	// console.log(a.blocks)
-	// for (let i = 0; i < 10; i++) {
-	// 	a.remove(0)
-	// }
-	// expect(a.length).toEqual(5)
-	// console.log(a.blocks)
-	// expect(a.blocks[0]).toEqual([12])
-	// expect(a.blocks[1]).toEqual([13,14])
-	// expect(a.blocks[3]).toEqual([15,16])
+	for (let i = 0; i < 10; i++) {
+		a.remove(0)
+	}
+	expect(a.length).toEqual(5)
+	expect(a.blocks.array[0].array).toEqual([12])
+	expect(a.blocks.array[1].array).toEqual([13,14])
+	expect(a.blocks.array[2].array).toEqual([15,16,undefined])
 })
 
 test('RootishArrayStack get', () => {
@@ -58,3 +71,11 @@ test('RootishArrayStack set', () => {
 	expect(a.set(15, 2)).toEqual(15)
 	expect(a.get(15)).toEqual(2)
 })
+
+function printBlocks(stack) {
+	let output =[]
+	for (let block of stack.blocks.array) {
+		output.push(block)
+	}
+	console.log(output)
+}

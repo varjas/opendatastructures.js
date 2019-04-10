@@ -2,9 +2,9 @@ const BaseList = require('./base.js').BaseList
 
 /** Implementation of ArrayStack data structure */
 class ArrayStack extends BaseList {
-	constructor() {
+	constructor(size=1) {
 		super()
-		this.array = new Array(1)
+		this.array = new Array(size)
 		this.length = 0
 	}
 

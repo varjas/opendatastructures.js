@@ -37,8 +37,7 @@ class RootishArrayStack extends BaseList {
 			this._grow()
 		}
 		this.length++
-		// for (let arrayIndex = this.length - 1; arrayIndex <= index; arrayIndex++) {
-		for (let arrayIndex = this.length; arrayIndex <= index; arrayIndex++) {
+		for (let arrayIndex = this.length - 1; arrayIndex > index; arrayIndex--) {
 			this.set(arrayIndex, this.get(arrayIndex - 1))
 		}
 		this.set(index, value)
@@ -46,7 +45,7 @@ class RootishArrayStack extends BaseList {
 
 	remove(index) {
 		const current = this.get(index)
-		for (let arrayIndex = index; arrayIndex < this.length - 1; arrayIndex++) {
+		for (let arrayIndex = index; arrayIndex < this.length; arrayIndex++) {
 			this.set(arrayIndex, this.get(arrayIndex + 1))
 		}
 		this.length--
