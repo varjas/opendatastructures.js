@@ -11,10 +11,13 @@ class ArrayStack extends BaseList {
 	}
 
 	_resize() {
+		// Create new array that is 2 * the current data size, or 1 element
 		let newArray = new Array(this._max(1, 2 * this.size()))
+		// Map current elements into new array
 		for (let i = 0; i < this.size(); i++) {
 			newArray[i] = this.array[i]
 		}
+		// Set new array as backing array
 		this.array = newArray
 	}
 
@@ -41,7 +44,7 @@ class ArrayStack extends BaseList {
 		if (index < 0 || index > this.size()) {throw new Error('IndexError')}
 		// Resize array if the array is full
 		if (this.array.length === this.size()) {this._resize()}
-		// Iterage through end of array to the requested index
+		// Iterate through end of array to the requested index
 		for (let i = this.size(); i > index; i--) {
 			// Shift elements over by one in backing array
 			this.array[i] = this.array[i-1]
