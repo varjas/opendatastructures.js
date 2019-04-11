@@ -10,6 +10,8 @@ test('ChainedHashTable add', () => {
 	for (let i = 0; i < testLength; i++) {
 		h.add(i)
 	}
+	// Check that duplicate values can't be added
+	expect(h.add(1)).toBe(false)
 	expect(h.length).toBe(testLength)
 	// Sum total lengths of internal arrays
 	expect(h.table.reduce((acc, a) => {
@@ -29,6 +31,22 @@ test('ChainedHashTable find', () => {
 		expect(h.find(i)).toBe(i)
 	}
 	expect(h.find(20)).toBe(null)
+})
+
+test('ChainedHashTable remove', () => {
+	let h = new ods.ChainedHashTable()
+	expect(h.remove(1)).toBe(null)
+	// Add integer values that correspond with each index
+	for (let i = 0; i < 17; i++) {
+		h.add(i)
+	}
+	// Find integer values
+	for (let i = 0; i < 17; i++) {
+		expect(h.remove(i)).toBe(i)
+		expect(h.length).toBe(16 - i)
+	}
+	expect(h.length).toBe(0)
+	expect(h.remove(1)).toBe(null)
 })
 
 // Print visual representation of hash table

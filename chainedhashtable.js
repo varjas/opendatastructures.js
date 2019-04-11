@@ -70,13 +70,13 @@ class ChainedHashTable extends BaseSet {
 
 	remove(value) {
 		let currentElements = this.table[this.hash(value)]
-		for (let element of currentElements) {
+		for (let element of currentElements.array) {
 			if (element === value) {
 				currentElements.removeValue(element)
+				this.length--
+				if (3 * this.length < this.table.length) {this._resize()}
+				return element
 			}
-			this.length--
-			if (3 * this.length < this.table.length) {this._resize()}
-			return element
 		}
 		return null
 	}

@@ -50,7 +50,7 @@ class BaseList extends BaseCollection {
 
 	removeValue(value) {
 		try {
-			return this.remove(this.indexOf(value))
+			return this.remove(this.array.indexOf(value))
 		}catch (e) {
 			return false
 		}
