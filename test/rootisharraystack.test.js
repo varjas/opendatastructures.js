@@ -15,7 +15,6 @@ test('RootishArrayStack add', () => {
 	expect(a.blocks.array[3].array).toEqual([6,7,8,9])
 	expect(a.blocks.array[4].array).toEqual([10,11,12,13,14])
 	expect(a.blocks.array[5].array).toEqual([15,16,undefined,undefined,undefined,undefined])
-	printBlocks(a)
 	a.add(12,17)
 	a.add(12,18)
 	a.add(12,19)
