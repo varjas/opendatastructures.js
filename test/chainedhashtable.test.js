@@ -17,6 +17,20 @@ test('ChainedHashTable add', () => {
 	}, 0)).toBe(testLength)
 })
 
+test('ChainedHashTable find', () => {
+	let h = new ods.ChainedHashTable()
+	expect(h.find(1)).toBe(null)
+	// Add integer values that correspond with each index
+	for (let i = 0; i < 17; i++) {
+		h.add(i)
+	}
+	// Find integer values
+	for (let i = 0; i < 17; i++) {
+		expect(h.find(i)).toBe(i)
+	}
+	expect(h.find(20)).toBe(null)
+})
+
 // Print visual representation of hash table
 function printHashTable(hashTable) {
 	let output = []
