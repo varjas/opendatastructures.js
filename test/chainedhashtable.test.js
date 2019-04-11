@@ -1,10 +1,10 @@
 const ods = require('../ods.js')
+const testLength = 20
 
 
 // Test ChainedHashTable data structure
 test('ChainedHashTable add', () => {
 	let h = new ods.ChainedHashTable()
-	const testLength = 17
 	expect(h.length).toBe(0)
 	// Add integer values that correspond with each index
 	for (let i = 0; i < testLength; i++) {
@@ -23,27 +23,27 @@ test('ChainedHashTable find', () => {
 	let h = new ods.ChainedHashTable()
 	expect(h.find(1)).toBe(null)
 	// Add integer values that correspond with each index
-	for (let i = 0; i < 17; i++) {
+	for (let i = 0; i < testLength; i++) {
 		h.add(i)
 	}
 	// Find integer values
-	for (let i = 0; i < 17; i++) {
+	for (let i = 0; i < testLength; i++) {
 		expect(h.find(i)).toBe(i)
 	}
-	expect(h.find(20)).toBe(null)
+	expect(h.find(testLength + 1)).toBe(null)
 })
 
 test('ChainedHashTable remove', () => {
 	let h = new ods.ChainedHashTable()
 	expect(h.remove(1)).toBe(null)
 	// Add integer values that correspond with each index
-	for (let i = 0; i < 17; i++) {
+	for (let i = 0; i < testLength; i++) {
 		h.add(i)
 	}
 	// Find integer values
-	for (let i = 0; i < 17; i++) {
+	for (let i = 0; i < testLength; i++) {
+		expect(h.length).toBe(testLength - i)
 		expect(h.remove(i)).toBe(i)
-		expect(h.length).toBe(16 - i)
 	}
 	expect(h.length).toBe(0)
 	expect(h.remove(1)).toBe(null)
