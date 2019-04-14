@@ -15,6 +15,21 @@ class LinearHashTable extends BaseSet {
 		this.length = 0
 	}
 
+	add(value) {
+		if (this.find(value) !== null) {return false}
+		if (2 * (lengthUtilized + 1) > this.table.length) {this._resize()}
+		let index = this.hash(value)
+		while (this.table[index] !== null && this.table[index] !== del) {
+			index = (index + 1) % this.table.length
+		}
+		if (this.table[index] === null) {
+			this.lengthUtilized++
+		}
+		this.length++
+		this.table[index] = value
+		return true
+	}
+
 	find(value) {
 		let index = this.hash(value)
 		while (this.table[index] !== null) {
