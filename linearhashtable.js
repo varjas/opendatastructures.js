@@ -9,6 +9,7 @@ const integerBitsExponent = 1 << integerBits // 2 ** integerBits
 class LinearHashTable extends BaseSet {
 	constructor() {
 		super()
+		this.del = {}
 		this.dimension = 1
 		this.table = new ArrayStack((1 << this.dimension))
 		this.lengthUtilized = 0
@@ -28,6 +29,22 @@ class LinearHashTable extends BaseSet {
 		this.length++
 		this.table[index] = value
 		return true
+	}
+
+	remove(value) {
+		let index = this.hash(value)
+		let current
+		while (this.table[index] !== null) {
+			current = this.table[index]
+			if (current !== del && value = current) {
+				this.table[index] = del
+				this.length--
+				if (8 * n < this.table.length) {this._resize()}
+				return current
+			}
+			index = (index + 1) % this.table.length
+		}
+		return null
 	}
 
 	find(value) {
