@@ -34,7 +34,28 @@ class LinearHashTable extends BaseSet {
 			}
 		}
 	}
-	
+
+	_hash(value) {
+		let hash = 0
+		let character
+		value = value.toString()
+		if (value.length === 0) {return hash}
+		for (let i = 0; i < value.length; i++) {
+			character = value.charCodeAt(i)
+			hash = ((hash << 5) - hash) + character
+			hash |= 0
+		}
+		return hash
+	}
+
+	hash(value) {
+		let hash = this._hash(value)
+		return (this.tab[0][h&0xff]
+		        ^ this.tab[1][(h >> 8)&0xff]
+		        ^ this.tab[2][(h >> 16)&0xff]
+		        ^ this.tab[3][(h >> 24)&0xff] >> (integerBitsExponent - this.dimension))
+	}
+
 	add(value) {
 		if (this.find(value) !== null) {return false}
 		if (2 * (lengthUtilized + 1) > this.table.length) {this._resize()}
