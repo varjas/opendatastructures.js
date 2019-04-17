@@ -10,7 +10,8 @@ const structureNames = [
 	'SEList',
 	'SkiplistSSet',
 	'SkiplistList',
-	'ChainedHashTable'
+	'ChainedHashTable',
+	'LinearHashTable'
 ]
 
 let structures = {}

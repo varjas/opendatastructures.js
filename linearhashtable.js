@@ -12,7 +12,7 @@ class LinearHashTable extends BaseSet {
 		this.del = {}
 		this.tab = tabList
 		this.dimension = 1
-		this.table = new ArrayStack((1 << this.dimension))
+		this.table = new Array((1 << this.dimension))
 		this.lengthUtilized = 0
 		this.length = 0
 	}
@@ -23,12 +23,12 @@ class LinearHashTable extends BaseSet {
 			this.dimension++
 		}
 		const oldTable = this.table
-		this.table = new ArrayStack((2 ** this.dimension))
+		this.table = new Array((2 ** this.dimension))
 		this.lengthUtilized = this.length
-		for (value of oldTable) {
-			if (value !== null && value !== del) {
+		for (let value of oldTable) {
+			if (value !== undefined && value !== this.del) {
 				let index = this.hash(value)
-				while (this.table[index] !== null) {
+				while (this.table[index] !== undefined) {
 					index = (index + 1) % this.table.length
 				}
 				this.table[index] = value
@@ -51,20 +51,20 @@ class LinearHashTable extends BaseSet {
 
 	hash(value) {
 		let hash = this._hash(value)
-		return (this.tab[0][h&0xff]
-		        ^ this.tab[1][(h >> 8)&0xff]
-		        ^ this.tab[2][(h >> 16)&0xff]
-		        ^ this.tab[3][(h >> 24)&0xff] >> (integerBitsExponent - this.dimension))
+		return (this.tab[0][hash&0xff]
+		        ^ this.tab[1][(hash >> 8)&0xff]
+		        ^ this.tab[2][(hash >> 16)&0xff]
+		        ^ this.tab[3][(hash >> 24)&0xff] >> (integerBitsExponent - this.dimension))
 	}
 
 	add(value) {
-		if (this.find(value) !== null) {return false}
-		if (2 * (lengthUtilized + 1) > this.table.length) {this._resize()}
+		if (this.find(value) !== undefined) {return false}
+		if (2 * (this.lengthUtilized + 1) > this.table.length) {this._resize()}
 		let index = this.hash(value)
-		while (this.table[index] !== null && this.table[index] !== del) {
+		while (this.table[index] !== undefined && this.table[index] !== this.del) {
 			index = (index + 1) % this.table.length
 		}
-		if (this.table[index] === null) {
+		if (this.table[index] === undefined) {
 			this.lengthUtilized++
 		}
 		this.length++
@@ -75,23 +75,24 @@ class LinearHashTable extends BaseSet {
 	remove(value) {
 		let index = this.hash(value)
 		let current
-		while (this.table[index] !== null) {
+		while (this.table[index] !== undefined) {
 			current = this.table[index]
-			if (current !== del && value = current) {
-				this.table[index] = del
+			current = this.table.get(index)
+			if (current !== this.del && value === current) {
+				this.table[index] = this.del
 				this.length--
 				if (8 * n < this.table.length) {this._resize()}
 				return current
 			}
 			index = (index + 1) % this.table.length
 		}
-		return null
+		return undefined
 	}
 
 	find(value) {
 		let index = this.hash(value)
-		while (this.table[index] !== null) {
-			if (this.table[index] !== del && value === this.table[index]) {
+		while (this.table[index] !== undefined) {
+			if (this.table[index] !== this.del && value === this.table[index]) {
 				return this.table[index]
 			}
 			index = (index + 1) % this.table.length
