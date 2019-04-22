@@ -27,3 +27,17 @@ test('LinearHashTable find', () => {
 		expect(h.find(i)).toBe(i)
 	}
 })
+
+test('LinearHashTable remove', () => {
+	let h = new ods.LinearHashTable()
+	// Add integer values that correspond with each index
+	for (let i = 0; i < testLength; i++) {
+		h.add(i)
+	}
+	// Find integer values
+	for (let i = 0; i < testLength; i++) {
+		expect(h.length).toBe(testLength - i)
+		expect(h.remove(i)).toBe(i)
+	}
+	expect(h.length).toBe(0)
+})
