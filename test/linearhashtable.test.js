@@ -41,3 +41,12 @@ test('LinearHashTable remove', () => {
 	}
 	expect(h.length).toBe(0)
 })
+
+// Print visual representation of hash table
+function printHashTable(hashTable) {
+	let output = []
+	for (let a of hashTable.table) {
+		output.push(a.array)
+	}
+	console.log(output)
+}
