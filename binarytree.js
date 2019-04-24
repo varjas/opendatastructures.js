@@ -15,6 +15,22 @@ class BinaryTree {
 		}
 		return depth
 	}
+
+	size(node) {
+		if (node === undefined) {return 0}
+		return 1 + this.size(node.left) + this.size(node.right)
+	}
+
+	height(node) {
+		if (node === undefined) {return 0}
+		return 1 + this.max(this.height(node.left), this.height(node.right))
+	}
+
+	traverse(node) {
+		if (node === undefined) {return}
+		this.traverse(node.left)
+		this.traverse(node.right)
+	}
 }
 
 module.exports = BinaryTree
