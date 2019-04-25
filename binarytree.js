@@ -16,14 +16,22 @@ class BinaryTree {
 		return depth
 	}
 
-	size(node) {
-		if (node === undefined) {return 0}
-		return 1 + this.size(node.left) + this.size(node.right)
+	size() {
+		return this._size(this.root)
 	}
 
-	height(node) {
+	_size(node) {
 		if (node === undefined) {return 0}
-		return 1 + this.max(this.height(node.left), this.height(node.right))
+		return 1 + this._size(node.left) + this._size(node.right)
+	}
+
+	height() {
+		return this._height(this.root)
+	}
+
+	_height(node) {
+		if (node === undefined) {return 0}
+		return 1 + this.max(this._height(node.left), this._height(node.right))
 	}
 
 	traverse(node) {
@@ -86,6 +94,22 @@ class BinaryTree {
 			node = next
 		}
 		return counter
+	}
+
+	bfTraverse() {
+		let queue = new ArrayQueue()
+		if (this.root !== undefined) {queue.add(this.root)}
+		while (queue.size() > 0) {
+			let node = queue.remove()
+			if (node.left !== undefined) {queue.add(node.left)}
+			if (node.right !== undefined) {queue.add(node.right)}
+		}
+	}
+}
+
+class Node {
+	constructor() {
+		[this.left, this.right, this.parent] = [undefined, undefined, undefined]
 	}
 }
 
