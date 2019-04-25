@@ -31,6 +31,33 @@ class BinaryTree {
 		this.traverse(node.left)
 		this.traverse(node.right)
 	}
+
+	traverse2() {
+		let node = this.root
+		let previous = undefined
+		let next = undefined
+		while (node !== undefined) {
+			if (previous === node.parent) {
+				if (node.left !== undefined) {
+					next = node.left
+				}else if (node.right !== undefined) {
+					next = node.right
+				}else {
+					next = node.parent
+				}
+			}else if (previous === node.left) {
+				if (node.right !== undefined) {
+					next = node.right
+				}else{
+					next = node.parent
+				}
+			}else{
+				next = node.parent
+			}
+			previous = node
+			node = next
+		}
+	}
 }
 
 module.exports = BinaryTree
