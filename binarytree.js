@@ -58,6 +58,35 @@ class BinaryTree {
 			node = next
 		}
 	}
+
+	size2() {
+		let node = this.root
+		let previous = undefined
+		let counter = 0
+		while (node !== undefined) {
+			if (previous === node.parent) {
+				counter++
+				if (node.left !== undefined) {
+					next = node.left
+				}else if (node.right !== undefined) {
+					next = node.right
+				}else {
+					next = node.parent
+				}
+			}else if (previous === node.left) {
+				if (node.right !== undefined) {
+					next = node.right
+				}else{
+					next = node.parent
+				}
+			}else{
+				next = node.parent
+			}
+			previous = node
+			node = next
+		}
+		return counter
+	}
 }
 
 module.exports = BinaryTree
