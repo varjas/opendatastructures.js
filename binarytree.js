@@ -107,4 +107,10 @@ class BinaryTree {
 	}
 }
 
+class Node {
+	constructor() {
+		[this.left, this.right, this.parent] = [undefined, undefined, undefined]
+	}
+}
+
 module.exports = BinaryTree
