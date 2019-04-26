@@ -57,4 +57,10 @@ class BaseList extends BaseCollection {
 	}
 }
 
-module.exports = {BaseSet, BaseList}
+class BaseNode {
+	constructor() {
+		[this.left, this.right, this.previous] = [undefined, undefined, undefined]
+	}
+}
+
+module.exports = {BaseSet, BaseList, BaseNode}

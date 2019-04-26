@@ -1,16 +1,18 @@
+const BaseSet = require('./base.js').BaseSet
 const ArrayQueue = require('./arrayqueue.js')
 
 
 /** Implementation of a basic binary tree data structure */
-class BinaryTree {
+class BinaryTree extends BaseSet {
 	constructor() {
+		super()
 		this.root = undefined
 	}
 
 	depth(node) {
 		let depth = 0
 		while (node !== this.root) {
-			node = node.parent
+			node = node.previous
 			depth++
 		}
 		return depth
@@ -45,22 +47,22 @@ class BinaryTree {
 		let previous = undefined
 		let next = undefined
 		while (node !== undefined) {
-			if (previous === node.parent) {
+			if (previous === node.previous) {
 				if (node.left !== undefined) {
 					next = node.left
 				}else if (node.right !== undefined) {
 					next = node.right
 				}else {
-					next = node.parent
+					next = node.previous
 				}
 			}else if (previous === node.left) {
 				if (node.right !== undefined) {
 					next = node.right
 				}else{
-					next = node.parent
+					next = node.previous
 				}
 			}else{
-				next = node.parent
+				next = node.previous
 			}
 			previous = node
 			node = next
@@ -72,23 +74,23 @@ class BinaryTree {
 		let previous = undefined
 		let counter = 0
 		while (node !== undefined) {
-			if (previous === node.parent) {
+			if (previous === node.previous) {
 				counter++
 				if (node.left !== undefined) {
 					next = node.left
 				}else if (node.right !== undefined) {
 					next = node.right
 				}else {
-					next = node.parent
+					next = node.previous
 				}
 			}else if (previous === node.left) {
 				if (node.right !== undefined) {
 					next = node.right
 				}else{
-					next = node.parent
+					next = node.previous
 				}
 			}else{
-				next = node.parent
+				next = node.previous
 			}
 			previous = node
 			node = next
@@ -104,12 +106,6 @@ class BinaryTree {
 			if (node.left !== undefined) {queue.add(node.left)}
 			if (node.right !== undefined) {queue.add(node.right)}
 		}
-	}
-}
-
-class Node {
-	constructor() {
-		[this.left, this.right, this.parent] = [undefined, undefined, undefined]
 	}
 }
 

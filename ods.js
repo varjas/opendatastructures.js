@@ -11,7 +11,8 @@ const structureNames = [
 	'SkiplistSSet',
 	'SkiplistList',
 	'ChainedHashTable',
-	'LinearHashTable'
+	'LinearHashTable',
+	'BinaryTree'
 ]
 
 let structures = {}
