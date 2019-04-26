@@ -18,6 +18,7 @@ Implementation of data structures from [Open Data Structures](http://opendatastr
     + List Skiplist
 - Hash Tables
     + Chained Hash Table
+    + Linear Hash Table
 
 ## Usage
 ```javascript
