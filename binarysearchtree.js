@@ -39,6 +39,44 @@ class BinarySearchTree extends BinaryTree {
 		if (last === undefined) {return undefined}
 		return last.value
 	}
+
+	add(value) {
+		const previous = this._findLast(value)
+		return this._addChild(previous, new Node(value))
+	}
+
+	_findLast(value) {
+		let node = this.root
+		let previous = undefined
+		while (node !== undefined) {
+			previous = node
+			if (value < node.value) {
+				node = node.left
+			}else if (value > node.value) {
+				node = node.right
+			}else{
+				return node
+			}
+		}
+		return previous
+	}
+
+	_addChild(previous, node) {
+		if (previous === undefined) {
+			this.root = node
+		}else{
+			if (node.value < previous.value) {
+				previous.left = node
+			}else if (node.value > previous.value) {
+				previous.right = node
+			}else{
+				return false
+			}
+			node.previous = previous
+		}
+		this.length++
+		return true
+	}
 }
 
 class Node extends BaseNode {
