@@ -101,6 +101,28 @@ class BinarySearchTree extends BinaryTree {
 		}
 		this.length--
 	}
+
+	_removeNode(node) {
+		if (node.left === undefined || node.right === undefined) {
+			this.splice(node)
+		}else{
+			let current = node.right
+			while (current.left !== undefined) {
+				current = current.left
+			}
+			node.value = current.value
+			this.splice(current)
+		}
+	}
+
+	remove(value) {
+		let node = this._findLast(value)
+		if (node !== undefined && value === node.value) {
+			this._removeNode(node)
+			return true
+		}
+		return false
+	}
 }
 
 class Node extends BaseNode {
