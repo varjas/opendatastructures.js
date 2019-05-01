@@ -79,7 +79,7 @@ class BinarySearchTree extends BinaryTree {
 	}
 
 	splice(node) {
-		let adjacent, prevoius
+		let adjacent, previous
 		if (node.left !== undefined) {
 			adjacent = node.left
 		}else{
