@@ -18,12 +18,28 @@ test('BinarySearchTree add', () => {
 	printTree(t)
 })
 
+test('BinarySearchTree find', () => {
+	let t = new ods.BinarySearchTree()
+	expect(t.find(0)).toBe(undefined)
+	// Add integer values
+	t.add(1)
+	t.add(0)
+	// Add integer values
+	for (let i = 2; i < testLength; i++) {
+		t.add(i)
+	}
+	for (let i = 0; i < testLength; i++) {
+		expect(t.find(i)).toBe(i)
+	}
+	expect(t.find(testLength + 1)).toBe(undefined)
+})
+
 test('BinarySearchTree remove', () => {
 	let t = new ods.BinarySearchTree()
 	expect(t.remove(1)).toBe(false)
 	// Add integer values
 	for (let i = 0; i < testLength; i++) {
-		expect(t.add(i)).toBe(true)
+		t.add(i)
 	}
 	// Remove integer values
 	for (let i = 0; i < testLength; i++) {
@@ -33,6 +49,7 @@ test('BinarySearchTree remove', () => {
 	expect(t.remove(1)).toBe(false)
 	expect(t.length).toBe(0)
 })
+
 
 // Print visual representation of tree
 function printTree(tree) {
