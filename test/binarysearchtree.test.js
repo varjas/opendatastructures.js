@@ -6,33 +6,53 @@ const testLength = 5
 test('BinarySearchTree add', () => {
 	let t = new ods.BinarySearchTree()
 	expect(t.length).toBe(0)
-	t.add(1)
-	t.add(0)
 	// Add integer values
-	for (let i = 2; i < testLength; i++) {
+	for (let i = 0; i >= -testLength; i--) {
+		expect(t.add(i)).toBe(true)
+	}
+	for (let i = 1; i < testLength; i++) {
 		expect(t.add(i)).toBe(true)
 	}
 	// Check that duplicate values can't be added
 	expect(t.add(1)).toBe(false)
-	expect(t.length).toBe(testLength)
-	printTree(t)
+	expect(t.length).toBe(testLength * 2)
+})
+
+test('BinarySearchTree find', () => {
+	let t = new ods.BinarySearchTree()
+	expect(t.find(0)).toBe(undefined)
+	// Add integer values
+	t.add(1)
+	t.add(0)
+	// Add integer values
+	for (let i = 2; i < testLength; i++) {
+		t.add(i)
+	}
+	for (let i = 0; i < testLength; i++) {
+		expect(t.find(i)).toBe(i)
+	}
+	expect(t.find(testLength + 1)).toBe(undefined)
 })
 
 test('BinarySearchTree remove', () => {
 	let t = new ods.BinarySearchTree()
 	expect(t.remove(1)).toBe(false)
 	// Add integer values
-	for (let i = 0; i < testLength; i++) {
-		expect(t.add(i)).toBe(true)
+	for (let i = 0; i >= -testLength; i--) {
+		t.add(i)
+	}
+	for (let i = 1; i < testLength; i++) {
+		t.add(i)
 	}
 	// Remove integer values
-	for (let i = 0; i < testLength; i++) {
+	for (let i = -testLength; i < testLength; i++) {
 		expect(t.remove(i)).toBe(true)
 	}
 	// Check that duplicate values can't be added
 	expect(t.remove(1)).toBe(false)
 	expect(t.length).toBe(0)
 })
+
 
 // Print visual representation of tree
 function printTree(tree) {
