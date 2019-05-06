@@ -29,6 +29,28 @@ class Treap extends BinarySearchTree {
 			this.root.previous = undefined
 		}
 	}
+
+	rotateRight(node) {
+		let current = node.left
+		current.previous = node.previous
+		if (current.previous !== undefined) {
+			if (current.previous.left === node) {
+				current.previous.left = current
+			}else{
+				current.previous.right = current
+			}
+		}
+		node.left = current.right
+		if (node.left !== undefined) {
+			node.left.previous = node
+		}
+		node.previous = current
+		current.right = node
+		if (node === this.root) {
+			this.root = current
+			this.root.previous = undefined
+		}
+	}
 }
 
 class Node extends BaseNode {
