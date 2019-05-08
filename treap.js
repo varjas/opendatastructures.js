@@ -51,6 +51,15 @@ class Treap extends BinarySearchTree {
 			this.root.previous = undefined
 		}
 	}
+
+	add(value) {
+		let current = new Node(value)
+		if (this.addNode(current)) {
+			this.bubbleUp(node)
+			return true
+		}
+		return false
+	}
 }
 
 class Node extends BaseNode {
