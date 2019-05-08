@@ -73,6 +73,16 @@ class Treap extends BinarySearchTree {
 			this.root = node
 		}
 	}
+
+	remove(value) {
+		let node = this.findLast(value)
+		if (node !== undefined && node.value == value) {
+			this.trickleDown(node)
+			this.splice(node)
+			return true
+		}
+		return false
+	}
 }
 
 class Node extends BaseNode {
