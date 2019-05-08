@@ -53,12 +53,25 @@ class Treap extends BinarySearchTree {
 	}
 
 	add(value) {
-		let current = new Node(value)
-		if (this.addNode(current)) {
+		let node = new Node(value)
+		if (this.addNode(node)) {
 			this.bubbleUp(node)
 			return true
 		}
 		return false
+	}
+
+	bubbleUp(node) {
+		while (node !== this.root && node.previous.priority > node.priority) {
+			if (node.previous.right === node) {
+				this.rotateLeft(node.previous)
+			}else{
+				this.rotateRight(node.previous)
+			}
+		}
+		if (node.previous === undefined) {
+			this.root = node
+		}
 	}
 }
 
