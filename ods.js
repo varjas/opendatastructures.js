@@ -13,7 +13,8 @@ const structureNames = [
 	'ChainedHashTable',
 	'LinearHashTable',
 	'BinaryTree',
-	'BinarySearchTree'
+	'BinarySearchTree',
+	'Treap'
 ]
 
 let structures = {}

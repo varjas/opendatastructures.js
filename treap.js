@@ -10,7 +10,7 @@ class Treap extends BinarySearchTree {
 
 	rotateLeft(node) {
 		let current = node.right
-		let current.previous = node.previous
+		current.previous = node.previous
 		if (current.previous !== undefined) {
 			if (current.previous.left === node) {
 				current.previous.left = current
