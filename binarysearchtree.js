@@ -45,6 +45,11 @@ class BinarySearchTree extends BinaryTree {
 		return this._addChild(previous, new Node(value))
 	}
 
+	_addNode(node) {
+		const previous = this._findLast(node.value)
+		return this._addChild(previous, node)
+	}
+
 	_findLast(value) {
 		let node = this.root
 		let previous = undefined
