@@ -18,6 +18,25 @@ test('Treap add', () => {
 	expect(t.length).toBe(testLength * 2)
 })
 
+test('Treap remove', () => {
+	let t = new ods.Treap()
+	expect(t.remove(1)).toBe(false)
+	// Add integer values
+	for (let i = 0; i >= -testLength; i--) {
+		t.add(i)
+	}
+	for (let i = 1; i < testLength; i++) {
+		t.add(i)
+	}
+	// Remove integer values
+	for (let i = -testLength; i < testLength; i++) {
+		expect(t.remove(i)).toBe(true)
+	}
+	// Check that duplicate values can't be added
+	expect(t.remove(1)).toBe(false)
+	expect(t.length).toBe(0)
+})
+
 // Print visual representation of tree
 function printTree(tree) {
 	let output = mapOutput(tree.root)

@@ -54,7 +54,7 @@ class Treap extends BinarySearchTree {
 
 	add(value) {
 		let node = new Node(value)
-		if (this.addNode(node)) {
+		if (this._addNode(node)) {
 			this.bubbleUp(node)
 			return true
 		}
@@ -75,7 +75,7 @@ class Treap extends BinarySearchTree {
 	}
 
 	remove(value) {
-		let node = this.findLast(value)
+		let node = this._findLast(value)
 		if (node !== undefined && node.value == value) {
 			this.trickleDown(node)
 			this.splice(node)
