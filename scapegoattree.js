@@ -23,6 +23,16 @@ class ScapegoatTree extends BinarySearchTree {
 			previous.left.previous = previous
 		}
 	}
+
+	_packIntoArray(node, array, iteration) {
+		if (node === undefined) {
+			return iteration
+		}
+		iteration = this._packIntoArray(node.left, array, iteration)
+		array[iteration] = node
+		iteration++
+		return this._packIntoArray(node.right, array, iteration)
+	}
 }
 
 module.exports = ScapegoatTree
