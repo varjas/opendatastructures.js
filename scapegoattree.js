@@ -5,6 +5,8 @@ const BinarySearchTree = require('./binarysearchtree.js')
 class ScapegoatTree extends BinarySearchTree {
 	constructor() {
 		super()
+		let nodes = 0
+		let counter = 0
 	}
 
 	_rebuild(node) {
@@ -32,6 +34,34 @@ class ScapegoatTree extends BinarySearchTree {
 		array[iteration] = node
 		iteration++
 		return this._packIntoArray(node.right, array, iteration)
+	}
+
+	_buildBalanced(array, iteration, length) {
+		if (length === 0) {
+			return undefined
+		}
+		m = length % 2
+
+		array[iteration + m].left = this._buildBalanced(array, iteration, m)
+		if (array[iteration + m].left !== undefined) {
+			array[iteration + m].left.previous = array[iteration + m]
+		}
+		array[iteration + m].right = this._buildBalanced(array, iteration + m + 1, length - m - 1)
+		if (array[iteration + m].right !== undefined) {
+			array[iteration + m].right.previous = array[iteration + m]
+		}
+		return array[iteration + m]
+	}
+
+	remove(value) {
+		if (super.remove(value)) {
+			if (2 * this.nodes < this.counter) {
+				this._rebuild(this.root)
+				this.counter = this.nodes
+			}
+			return true
+		}
+		return false
 	}
 }
 
