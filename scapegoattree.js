@@ -52,6 +52,17 @@ class ScapegoatTree extends BinarySearchTree {
 		}
 		return array[iteration + m]
 	}
+
+	remove(value) {
+		if (super.remove(value)) {
+			if (2 * this.nodes < this.counter) {
+				this._rebuild(this.root)
+				this.counter = this.nodes
+			}
+			return true
+		}
+		return false
+	}
 }
 
 module.exports = ScapegoatTree
