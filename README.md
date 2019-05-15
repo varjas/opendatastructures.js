@@ -19,6 +19,9 @@ Implementation of data structures from [Open Data Structures](http://opendatastr
 - Hash Tables
     + Chained Hash Table
     + Linear Hash Table
+- Binary Trees
+    + Random Binary Search Tree
+    + Treap
 
 ## Usage
 ```javascript
