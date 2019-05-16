@@ -21,7 +21,7 @@ let structures = {}
 
 // Generate combined object of all data structures
 structureNames.forEach(name => {
-	structures[name] = require('./' + name.toLowerCase() + '.js')
+	structures[name] = require('./src/' + name.toLowerCase() + '.js')
 })
 
 module.exports = structures
