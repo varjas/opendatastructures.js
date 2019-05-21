@@ -53,6 +53,18 @@ class ScapegoatTree extends BinarySearchTree {
 		return array[iteration + m]
 	}
 
+	add(value) {
+		let [node, depth] = this.addWithDepth(value)
+		if (depth > log32(this.counter)) {
+			let currentNode = node.previous
+			while (3 * this.size(currentNode) <= 2 * this.size(currentNode.previous)) {
+				currentNode = currentNode.previous
+			}
+			this._rebuild(currentNode.previous)
+		}
+		return (depth >= 0)
+	}
+
 	remove(value) {
 		if (super.remove(value)) {
 			if (2 * this.nodes < this.counter) {
