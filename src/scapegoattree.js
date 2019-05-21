@@ -9,6 +9,44 @@ class ScapegoatTree extends BinarySearchTree {
 		let counter = 0
 	}
 
+	_addWithDepth(value) {
+		let node = this.newNode(value)
+		let currentNode = this.root
+		if (currentNode === undefined) {
+			this.root = node
+			this.nodes += 1
+			this. counter += 1
+			return [node, 0]
+		}
+		let done = false
+		let depth = 0
+		while (done === false) {
+			if (value < currentNode.value) {
+				if (currentNode.left === undefined) {
+					currentNode.left = node
+					node.previous = currentNode
+					done = true
+				}else{
+					currentNode = currentNode.left
+				}
+			}else if (value > currentNode.value) {
+				if (currentNode.right === undefined) {
+					currentNode.right = node
+					node.previous = currentNode
+					done = true
+				}else{
+					currentNode = currentNode.right
+				}
+			}else{
+				return [null, -1]
+			}
+			depth += 1
+		}
+		this.nodes += 1
+		this.counter += 1
+		return [node, depth]
+	}
+
 	_rebuild(node) {
 		const length = this.size(node)
 		let previous = node.previous
@@ -54,7 +92,7 @@ class ScapegoatTree extends BinarySearchTree {
 	}
 
 	add(value) {
-		let [node, depth] = this.addWithDepth(value)
+		let [node, depth] = this._addWithDepth(value)
 		if (depth > log32(this.counter)) {
 			let currentNode = node.previous
 			while (3 * this.size(currentNode) <= 2 * this.size(currentNode.previous)) {
